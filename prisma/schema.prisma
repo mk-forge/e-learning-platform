@@ -1,0 +1,162 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           Int           @id @default(autoincrement()) @map("id_user")
+  firstName    String        @map("first_name")
+  lastName     String        @map("last_name")
+  email        String        @unique @map("email")
+  passwordHash String        @map("password_hash")
+  role         Role          @default(student)
+  createdAt    DateTime      @default(now()) @map("created_at")
+  enrollments  Enrollment[]
+  submissions  Submission[]
+  chatMessages ChatMessage[]
+  testResults  TestResult[]
+
+  @@map("users")
+}
+
+model Course {
+  id            Int            @id @default(autoincrement()) @map("id_course")
+  title         String
+  description   String?        @db.Text
+  capacity      Int?
+  isPremium     Boolean        @default(false) @map("is_premium")
+  hasAds        Boolean        @default(true) @map("has_ads")
+  createdAt     DateTime       @default(now()) @map("created_at")
+  enrollments   Enrollment[]
+  materials     Material[]
+  assignments   Assignment[]
+  chatMessages  ChatMessage[]
+  testResults   TestResult[]
+  voiceChannels VoiceChannel[]
+  finalTests    FinalTest[]
+
+  @@map("courses")
+}
+
+model Enrollment {
+  id         Int      @id @default(autoincrement()) @map("id_enrollment")
+  userId     Int      @map("user_id")
+  courseId   Int      @map("course_id")
+  enrolledAt DateTime @default(now()) @map("enrolled_at")
+  user       User     @relation(fields: [userId], references: [id])
+  course     Course   @relation(fields: [courseId], references: [id])
+
+  @@map("enrollments")
+}
+
+model Material {
+  id          Int      @id @default(autoincrement()) @map("id_material")
+  courseId    Int      @map("course_id")
+  title       String
+  description String?  @db.Text
+  file        String?
+  createdAt   DateTime @default(now()) @map("created_at")
+  course      Course   @relation(fields: [courseId], references: [id])
+
+  @@map("materials")
+}
+
+model Assignment {
+  id          Int          @id @default(autoincrement()) @map("id_assignment")
+  courseId    Int          @map("course_id")
+  title       String
+  description String?      @db.Text
+  deadline    DateTime?
+  minScore    Int?         @map("min_score")
+  maxAttempts Int          @default(1) @map("max_attempts")
+  createdAt   DateTime     @default(now()) @map("created_at")
+  course      Course       @relation(fields: [courseId], references: [id])
+  submissions Submission[]
+
+  @@map("assignments")
+}
+
+model Submission {
+  id           Int        @id @default(autoincrement()) @map("id_submission")
+  assignmentId Int        @map("assignment_id")
+  studentId    Int        @map("student_id")
+  file         String?
+  score        Int?
+  submittedAt  DateTime   @default(now()) @map("submitted_at")
+  assignment   Assignment @relation(fields: [assignmentId], references: [id])
+  student      User       @relation(fields: [studentId], references: [id])
+
+  @@map("submissions")
+}
+
+model ChatMessage {
+  id        Int      @id @default(autoincrement()) @map("id_message")
+  courseId  Int      @map("course_id")
+  senderId  Int      @map("sender_id")
+  message   String?  @db.Text
+  timestamp DateTime @default(now())
+  course    Course   @relation(fields: [courseId], references: [id])
+  sender    User     @relation(fields: [senderId], references: [id])
+
+  @@map("chat_messages")
+}
+
+model TestResult {
+  id        Int      @id @default(autoincrement()) @map("id_test_result")
+  studentId Int      @map("student_id")
+  courseId  Int      @map("course_id")
+  score     Int?
+  dateTaken DateTime @default(now()) @map("date_taken")
+  student   User     @relation(fields: [studentId], references: [id])
+  course    Course   @relation(fields: [courseId], references: [id])
+
+  @@map("test_results")
+}
+
+model ContactForm {
+  id        Int      @id @default(autoincrement()) @map("id_contact_form")
+  name      String
+  email     String
+  message   String?  @db.Text
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("contact_forms")
+}
+
+model VoiceChannel {
+  id        Int      @id @default(autoincrement()) @map("id_voice_channel")
+  courseId  Int      @map("course_id")
+  name      String
+  createdAt DateTime @default(now()) @map("created_at")
+  course    Course   @relation(fields: [courseId], references: [id])
+
+  @@map("voice_channels")
+}
+
+model FinalTest {
+  id          Int       @id @default(autoincrement()) @map("id_final_test")
+  courseId    Int       @map("course_id")
+  title       String
+  description String?   @db.Text
+  deadline    DateTime?
+  minScore    Int?      @map("min_score")
+  maxAttempts Int       @default(1) @map("max_attempts")
+  isUnlocked  Boolean   @default(false) @map("is_unlocked")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  course      Course    @relation(fields: [courseId], references: [id])
+
+  @@map("final_tests")
+}
+
+enum Role {
+  student
+  teacher
+  admin
+}

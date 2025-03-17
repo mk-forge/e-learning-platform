@@ -30,7 +30,7 @@ const footer = () => {
             </div>
           </div>
           <div className="col-span-2">
-            <h3 className="mb-4 text-2xl font-medium">Links</h3>
+            <h3 className="mb-4 text-2xl font-medium">Odkazy</h3>
             <ul>
               {headerData.map((item, index) => (
                 <li key={index} className="mb-2 text-black/50 hover:text-primary w-fit">
@@ -42,31 +42,31 @@ const footer = () => {
             </ul>
           </div>
           <div className="col-span-2">
-            <h3 className="mb-4 text-2xl font-medium">Other</h3>
+            <h3 className="mb-4 text-2xl font-medium">Další</h3>
             <ul>
               <li className="mb-2 text-black/50 hover:text-primary w-fit">
                 <Link href="#">
-                  About Us
+                  O nás
                 </Link>
               </li>
               <li className="mb-2 text-black/50 hover:text-primary w-fit">
                 <Link href="#">
-                  Our Team
+                  Náš tým
                 </Link>
               </li>
               <li className="mb-2 text-black/50 hover:text-primary w-fit">
                 <Link href="#">
-                  career
+                  Kariéra
                 </Link>
               </li>
               <li className="mb-2 text-black/50 hover:text-primary w-fit">
                 <Link href="#">
-                  Services
+                  Služby
                 </Link>
               </li>
               <li className="mb-2 text-black/50 hover:text-primary w-fit">
                 <Link href="#">
-                  Contact
+                  Kontakty
                 </Link>
               </li>
             </ul>
@@ -77,14 +77,14 @@ const footer = () => {
                 icon="tabler:brand-google-maps"
                 className="text-primary text-3xl inline-block me-2"
               />
-              <h5 className="text-lg text-black/60">925 Filbert Street Pennsylvania 18072</h5>
+              <h5 className="text-lg text-black/60">17. listopadu 2172/15, 708 00 Ostrava-Poruba</h5>
             </div>
             <div className="flex gap-2 mt-10">
               <Icon
                 icon="tabler:phone"
                 className="text-primary text-3xl inline-block me-2"
               />
-              <h5 className="text-lg text-black/60">+45 3411-4411</h5>
+              <h5 className="text-lg text-black/60">+420 603 123 456</h5>
             </div>
             <div className="flex gap-2 mt-10">
               <Icon
@@ -97,10 +97,10 @@ const footer = () => {
         </div>
 
         <div className='mt-10 lg:flex items-center justify-between'>
-          <h4 className='text-black/50 text-sm text-center lg:text-start font-normal'>@2025 Agency. All Rights Reserved by <Link href="https://getnextjstemplates.com/" target="_blank" className="hover:text-primary"> GetNextJsTemplates.com</Link></h4>
+          <h4 className='text-black/50 text-sm text-center lg:text-start font-normal'>@2025 Agency. Všechna práva vyhrazena <Link href="https://www.fei.vsb.cz/cs/index.html" target="_blank" className="hover:text-primary"> https://www.fei.vsb.cz/cs/index.html</Link></h4>
           <div className="flex gap-5 mt-5 lg:mt-0 justify-center lg:justify-start">
-            <Link href="/" target="_blank" className='text-black/50 text-sm font-normal hover:text-primary'>Privacy policy</Link>
-            <Link href="/" target="_blank" className='text-black/50 text-sm font-normal hover:text-primary'>Terms & conditions</Link>
+            <Link href="/" target="_blank" className='text-black/50 text-sm font-normal hover:text-primary'>Ochrana soukromí</Link>
+            <Link href="/" target="_blank" className='text-black/50 text-sm font-normal hover:text-primary'>Zásady & podmínky</Link>
           </div>
         </div>
       </div>

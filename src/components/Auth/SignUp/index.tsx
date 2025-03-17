@@ -84,26 +84,26 @@ const SignUp = () => {
             type="submit"
             className="flex w-full items-center text-18 font-medium justify-center rounded-md bg-primary px-5 py-3 text-darkmode transition duration-300 ease-in-out hover:bg-transparent hover:text-primary border-primary border "
           >
-            Sign Up {loading && <Loader />}
+            Registrovat se {loading && <Loader />}
           </button>
         </div>
       </form>
 
       <p className="text-body-secondary mb-4 text-white text-base">
-        By creating an account you are agree with our{" "}
+        Vytvořením účtu souhlasíte s našimi{" "}
         <a href="/#" className="text-primary hover:underline">
-          Privacy
+          Soukromí
         </a>{" "}
-        and{" "}
+        a{" "}
         <a href="/#" className="text-primary hover:underline">
-          Policy
+          Zásady
         </a>
       </p>
 
       <p className="text-body-secondary text-white text-base">
-        Already have an account?
+        Už máte účet?
         <Link href="/" className="pl-2 text-primary hover:underline">
-          Sign In
+          Přihlásit se
         </Link>
       </p>
     </>

@@ -54,7 +54,7 @@ const Signin = () => {
 
       <span className="z-1 relative my-8 block text-center before:content-[''] before:absolute before:h-px before:w-40% before:bg-black/15 before:left-0 before:top-3 after:content-[''] after:absolute after:h-px after:w-40% after:bg-black/15 after:top-3 after:right-0">
         <span className="text-body-secondary relative z-10 inline-block px-3 text-base text-black">
-          OR
+          NEBO
         </span>
       </span>
 
@@ -85,7 +85,7 @@ const Signin = () => {
             type="submit"
             className="bg-primary w-full py-3 rounded-lg text-18 font-medium border border-primary hover:text-primary hover:bg-transparent"
           >
-            Sign In {loading && <Loader />}
+            Přihlásit se {loading && <Loader />}
           </button>
         </div>
       </form>
@@ -94,12 +94,12 @@ const Signin = () => {
         href="/forgot-password"
         className="mb-2 inline-block text-base text-dark hover:text-primary text-white dark:hover:text-primary"
       >
-        Forgot Password?
+        Zapomněli jste heslo?
       </Link>
       <p className="text-body-secondary text-white text-base">
-        Not a member yet?{" "}
+        Ještě nejste členem?{" "}
         <Link href="/" className="text-primary hover:underline">
-          Sign Up
+          Registrovat se
         </Link>
       </p>
     </>

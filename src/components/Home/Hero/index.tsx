@@ -13,12 +13,12 @@ const Hero = () => {
                                 icon="solar:verified-check-bold"
                                 className="text-success text-xl inline-block me-2"
                             />
-                            <p className='text-success text-sm font-semibold text-center lg:text-start'>Get 30% off on first enroll</p>
+                            <p className='text-success text-sm font-semibold text-center lg:text-start'>Získejte 30% slevu na první kurz</p>
                         </div>
-                        <h1 className='text-midnight_text text-4xl sm:text-5xl font-semibold pt-5 lg:pt-0'>Advance your engineering skills with us.</h1>
-                        <h3 className='text-black/70 text-lg pt-5 lg:pt-0'>Build skills with our courses and mentor from world-class companies.</h3>
+                        <h1 className='text-midnight_text text-4xl sm:text-5xl font-semibold pt-5 lg:pt-0'>Zlepšete s námi své dovednosti.</h1>
+                        <h3 className='text-black/70 text-lg pt-5 lg:pt-0'>Učte se za pomoci našich zkušených instruktorů.</h3>
                         <div className="relative rounded-full pt-5 lg:pt-0">
-                            <input type="Email address" name="q" className="py-6 lg:py-8 pl-8 pr-20 text-lg w-full text-black rounded-full focus:outline-none shadow-input-shadow" placeholder="search courses..." autoComplete="off" />
+                            <input type="Email address" name="q" className="py-6 lg:py-8 pl-8 pr-20 text-lg w-full text-black rounded-full focus:outline-none shadow-input-shadow" placeholder="vyhledejte kurzy..." autoComplete="off" />
                             <button className="bg-secondary p-5 rounded-full absolute right-2 top-2 ">
                                 <Icon
                                     icon="solar:magnifer-linear"
@@ -29,15 +29,15 @@ const Hero = () => {
                         <div className='flex items-center justify-between pt-10 lg:pt-4'>
                             <div className='flex gap-2'>
                                 <Image src="/images/banner/check-circle.svg" alt="check-image" width={30} height={30} className='smallImage' />
-                                <p className='text-sm sm:text-lg font-normal text-black'>Flexible</p>
+                                <p className='text-sm sm:text-lg font-normal text-black'>Flexibilní výuka</p>
                             </div>
                             <div className='flex gap-2'>
                                 <Image src="/images/banner/check-circle.svg" alt="check-image" width={30} height={30} className='smallImage' />
-                                <p className='text-sm sm:text-lg font-normal text-black'>Learning path</p>
+                                <p className='text-sm sm:text-lg font-normal text-black'>Zlepšení dovedností</p>
                             </div>
                             <div className='flex gap-2'>
                                 <Image src="/images/banner/check-circle.svg" alt="check-image" width={30} height={30} className='smallImage' />
-                                <p className='text-sm sm:text-lg font-normal text-black'>Community</p>
+                                <p className='text-sm sm:text-lg font-normal text-black'>Aktivní komunita</p>
                             </div>
                         </div>
                     </div>

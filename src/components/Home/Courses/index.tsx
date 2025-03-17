@@ -59,8 +59,8 @@ const Courses = () => {
         <section id="courses">
             <div className='container mx-auto lg:max-w-screen-xl md:max-w-screen-md px-4'>
                 <div className="sm:flex justify-between items-center mb-20">
-                    <h2 className="text-midnight_text text-4xl lg:text-5xl font-semibold mb-5 sm:mb-0">Popular courses.</h2>
-                    <Link href={'/'} className="text-primary text-lg font-medium hover:tracking-widest duration-500">Explore courses&nbsp;&gt;&nbsp;</Link>
+                    <h2 className="text-midnight_text text-4xl lg:text-5xl font-semibold mb-5 sm:mb-0">Oblíbené kurzy.</h2>
+                    <Link href={'/'} className="text-primary text-lg font-medium hover:tracking-widest duration-500">Objevte kurzy&nbsp;&gt;&nbsp;</Link>
                 </div>
                 <Slider {...settings}>
                     {courseData.map((items, i) => (
@@ -91,14 +91,14 @@ const Courses = () => {
                                                 icon="solar:notebook-minimalistic-outline"
                                                 className="text-primary text-xl inline-block me-2"
                                             />
-                                            <h3 className="text-base font-medium text-black opacity-75">{items.classes} classes</h3>
+                                            <h3 className="text-base font-medium text-black opacity-75">{items.classes} tříd</h3>
                                         </div>
                                         <div className="flex gap-4">
                                             <Icon
                                                 icon="solar:users-group-rounded-linear"
                                                 className="text-primary text-xl inline-block me-2"
                                             />
-                                            <h3 className="text-base font-medium text-black opacity-75">{items.students} students</h3>
+                                            <h3 className="text-base font-medium text-black opacity-75">{items.students} studentů</h3>
                                         </div>
                                     </div>
                                 </div>

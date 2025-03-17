@@ -9,7 +9,7 @@ const Newsletter = () => {
                         <div className="mb-10 mt-24 lg:mx-64 lg:my-24">
                             <h3 className="text-4xl md:text-5xl text-center font-semibold text-white mb-3">Newsletter.</h3>
                             <h3 className="text-base font-normal text-white/75 text-center mb-8">
-                                Subscrible our newsletter for discounts, <br /> promo and many more.
+                                Odebírejte náš newsletter pro slevy, <br /> promo a mnoho dalšího.
                             </h3>
                             <div>
                                 <div className="relative text-white focus-within:text-white flex flex-row-reverse rounded-full pt-5 lg:pt-0">

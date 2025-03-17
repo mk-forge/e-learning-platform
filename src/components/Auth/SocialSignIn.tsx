@@ -9,7 +9,7 @@ const SocialSignIn = () => {
           onClick={() => signIn("google")}
           className="flex w-full items-center justify-center gap-2.5 rounded-lg p-3.5 hover:bg-primary/15 bg-primary hover:text-black text-white border border-primary"
         >
-          Sign In
+          Přihlásit se
           <svg
             width="23"
             height="22"
@@ -52,7 +52,7 @@ const SocialSignIn = () => {
           onClick={() => signIn("github")}
           className="flex w-full items-center justify-center gap-2.5 rounded-lg p-3.5 hover:bg-primary/15 bg-primary hover:text-black text-white border border-primary"
         >
-          Sign In
+          Přihlásit se
           <svg
             width="22"
             height="22"

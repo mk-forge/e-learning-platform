@@ -48,9 +48,13 @@ const Courses = () => {
 
         return (
             <>
-                {Array(fullStars).fill(<Icon icon="tabler:star-filled" className="text-yellow-500 text-xl inline-block" />)}
-                {halfStars > 0 && <Icon icon="tabler:star-half-filled" className="text-yellow-500 text-xl inline-block" />}
-                {Array(emptyStars).fill(<Icon icon="tabler:star-filled" className="text-gray-400 text-xl inline-block" />)}
+                {[...Array(fullStars)].map((_, i) => (
+                    <Icon key={`full-${i}`} icon="tabler:star-filled" className="text-yellow-500 text-xl inline-block" />
+                ))}
+                {halfStars > 0 && <Icon key="half" icon="tabler:star-half-filled" className="text-yellow-500 text-xl inline-block" />}
+                {[...Array(emptyStars)].map((_, i) => (
+                    <Icon key={`empty-${i}`} icon="tabler:star-filled" className="text-gray-400 text-xl inline-block" />
+                ))}
             </>
         );
     };

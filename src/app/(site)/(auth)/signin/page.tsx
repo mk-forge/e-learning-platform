@@ -12,7 +12,12 @@ const SigninPage = () => {
     <>
       <Breadcrumb pageName="Sign In Page" />
 
-      <Signin />
+        // TODO - fix this if needed
+      <Signin setIsSignInOpen={function(open: boolean): void {
+              throw new Error("Function not implemented.");
+          } } setIsSignUpOpen={function(open: boolean): void {
+              throw new Error("Function not implemented.");
+          } } />
     </>
   );
 };

@@ -41,7 +41,6 @@ model Course {
   materials     Material[]
   testResults   TestResult[]
   voiceChannels VoiceChannel[]
-  imageUrl      String?
 
   @@map("courses")
 }

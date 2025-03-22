@@ -24,14 +24,14 @@ export const CourseList = () => {
   async function fetchCourses() {
     try {
       const res = await fetch("/api/courses");
-      if (!res.ok) throw new Error("Chyba při načítání kurzů");
+      if (!res.ok) throw new Error("Chyba pri nacitani kurzu");
       const data: Course[] = await res.json();
       setCourses(data);
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
       } else {
-        setError("Neznámá chyba");
+        setError("Neznama chyba");
       }
     }
   }

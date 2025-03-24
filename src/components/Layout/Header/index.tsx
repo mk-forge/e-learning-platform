@@ -110,7 +110,18 @@ const Header: React.FC = () => {
 
                                 {dropdownOpen && (
                                     <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
-                                        <Link href="/profile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                        <Link
+                                            href="#"
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                if (session?.user?.role === "teacher") {
+                                                    router.push("/teacher");
+                                                } else {
+                                                    router.push("/profile");
+                                                }
+                                            }}
+                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                        >
                                             Profil
                                         </Link>
                                         <Link href="/dashboard" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">

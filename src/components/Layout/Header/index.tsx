@@ -11,6 +11,7 @@ import SignIn from "@/components/Auth/SignIn";
 import {Icon} from "@iconify/react/dist/iconify.js";
 import {useSession, signOut} from "next-auth/react";
 import {useRouter} from "next/navigation";
+import {toast} from "react-hot-toast";
 
 const Header: React.FC = () => {
     const {data: session} = useSession();
@@ -58,6 +59,7 @@ const Header: React.FC = () => {
 
     const handleLogout = async () => {
         await signOut({redirect: false});
+        toast.success("Successfully logged out");
         router.push("/");
     };
 

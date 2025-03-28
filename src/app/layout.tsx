@@ -6,6 +6,7 @@ import {ThemeProvider} from "next-themes";
 import ScrollToTop from "@/components/ScrollToTop";
 import React from "react";
 import NextAuthSessionProvider from "@/components/providers/SessionProvider";
+import { Toaster } from "react-hot-toast";
 
 const font = Poppins({subsets: ["latin"], weight: ["400", "500", "600", "700"],});
 
@@ -27,6 +28,7 @@ export default function RootLayout({
                 {children}
                 <Footer/>
                 <ScrollToTop/>
+                <Toaster position="top-center" />
             </ThemeProvider>
         </NextAuthSessionProvider>
         </body>

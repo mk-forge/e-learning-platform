@@ -1,12 +1,13 @@
 "use client";
 
-import {useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 import toast from "react-hot-toast";
 import SocialSignUp from "../SocialSignUp";
 import Logo from "@/components/Layout/Header/Logo";
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Loader from "@/components/Common/Loader";
-import {registerUser} from "@/app/actions/auth";
+import { registerUser } from "@/app/actions/auth";
 
 const SignUp = ({
                     setIsSignInOpen,
@@ -16,6 +17,7 @@ const SignUp = ({
     setIsSignUpOpen: (open: boolean) => void;
 }) => {
     const [loading, setLoading] = useState(false);
+    const router = useRouter();
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -27,7 +29,23 @@ const SignUp = ({
 
             if (result.success) {
                 toast.success("Successfully registered");
-                setIsSignUpOpen(false);
+
+                // Auto-login after registration
+                const email = formData.get("email") as string;
+                const password = formData.get("password") as string;
+
+                const loginResult = await signIn("credentials", {
+                    email,
+                    password,
+                    redirect: false,
+                });
+
+                if (loginResult?.ok) {
+                    setIsSignUpOpen(false);
+                    router.refresh(); // Refresh to update authentication state
+                } else if (loginResult?.error) {
+                    toast.error("Registration successful but couldn't log in automatically");
+                }
             } else {
                 toast.error(result.message);
             }
@@ -66,14 +84,14 @@ const SignUp = ({
                         placeholder="Jméno"
                         name="firstName"
                         required
-                        className="w-full rounded-md border border-black/20 border-solid bg-transparent px-5 py-3 text-base text-dark outline-none transition placeholder:text-grey focus:border-primary focus-visible:shadow-none text-white dark:focus:border-primary"
+                        className="w-full rounded-md border border-black/20 border-solid bg-transparent px-5 py-3 text-base text-dark outline-none transition placeholder:text-grey focus:border-primary focus-visible:shadow-none text-black dark:focus:border-primary"
                     />
                     <input
                         type="text"
                         placeholder="Příjmení"
                         name="lastName"
                         required
-                        className="w-full rounded-md border border-black/20 border-solid bg-transparent px-5 py-3 text-base text-dark outline-none transition placeholder:text-grey focus:border-primary focus-visible:shadow-none text-white dark:focus:border-primary"
+                        className="w-full rounded-md border border-black/20 border-solid bg-transparent px-5 py-3 text-base text-dark outline-none transition placeholder:text-grey focus:border-primary focus-visible:shadow-none text-black dark:focus:border-primary"
                     />
                 </div>
                 <div className="mb-[22px]">
@@ -82,7 +100,7 @@ const SignUp = ({
                         placeholder="Email"
                         name="email"
                         required
-                        className="w-full rounded-md border border-black/20 border-solid bg-transparent px-5 py-3 text-base text-dark outline-none transition placeholder:text-grey focus:border-primary focus-visible:shadow-none text-white dark:focus:border-primary"
+                        className="w-full rounded-md border border-black/20 border-solid bg-transparent px-5 py-3 text-base text-dark outline-none transition placeholder:text-grey focus:border-primary focus-visible:shadow-none text-black dark:focus:border-primary"
                     />
                 </div>
                 <div className="mb-[22px]">
@@ -97,23 +115,12 @@ const SignUp = ({
                 <div className="mb-9">
                     <button
                         type="submit"
-                        className="flex w-full items-center text-18 font-medium justify-center rounded-md bg-primary px-5 py-3 text-darkmode transition duration-300 ease-in-out hover:bg-transparent hover:text-primary border-primary border "
+                        className="flex w-full items-center text-18 font-medium justify-center rounded-md text-white bg-primary px-5 py-3 text-darkmode transition duration-300 ease-in-out hover:bg-transparent hover:text-primary border-primary border "
                     >
                         Registrovat se {loading && <Loader/>}
                     </button>
                 </div>
             </form>
-
-            <p className="text-body-secondary mb-4 text-black text-base">
-                Vytvořením účtu souhlasíte s našimi{" "}
-                <a href="/#" className="text-primary hover:underline">
-                    Soukromí
-                </a>{" "}
-                a{" "}
-                <a href="/#" className="text-primary hover:underline">
-                    Zásady
-                </a>
-            </p>
 
             <p className="text-body-secondary text-black text-base">
                 Už máte účet?

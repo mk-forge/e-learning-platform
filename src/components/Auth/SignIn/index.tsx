@@ -91,7 +91,7 @@ const Signin = ({
                 <div className="mb-9">
                     <button
                         type="submit"
-                        className="bg-primary w-full py-3 rounded-lg text-18 font-medium border border-primary hover:text-primary hover:bg-transparent"
+                        className="bg-primary w-full py-3 rounded-lg text-white text-18 font-medium border border-primary hover:text-primary hover:bg-transparent"
                     >
                         Přihlásit se {loading && <Loader />}
                     </button>

@@ -1,4 +1,3 @@
-// src/app/api/courses/route.ts
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 
@@ -24,9 +23,9 @@ export async function GET() {
 
         return NextResponse.json(courses);
     } catch (error) {
-        console.error('Error fetching courses:', error);
+        console.error('Nepovedlo se získat kurzy, chyba:', error);
         return NextResponse.json(
-            { error: 'Failed to fetch courses' },
+            { error: 'Nepovedlo se získat kurzy' },
             { status: 500 }
         );
     }

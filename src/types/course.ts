@@ -8,10 +8,7 @@ export interface Course {
     teacherId: number;
     createdAt: Date | string;
     teacher: {
-        id: number;
-        firstName: string;
-        lastName: string;
-        email: string;
+        firstName: string; lastName: string; id: number
     };
     materials?: any[];
     assignments?: any[];

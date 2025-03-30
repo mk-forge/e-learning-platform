@@ -10,14 +10,14 @@ const courseImageArray: string[] = [
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTU1QcWyLr7f0bHiBv4ZKw74dpj5sfS98yJPA&s", // C++
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyIxiE33bx2t0rTEUln1KrEc7e4TejvtOZPg&s", // Python
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPHX0QdVpZVWsnXCaEF3Lp7bSmZ7MIkjL33A&s", // React
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOAnih04WNhAAe_aolZqky1alLD72EIoEDEA&s", // Machine Learning
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ28e3mGOO58W9ZYK77RnRWft95Bwr4lg5RQ&s", // PostgreSQL
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuiNAv3RuXflh4VDsij9Onm3Ii7CuQbFJsTQ&s" // Cybersecurity
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOAnih04WNhAAe_aolZqky1alLD72EIoEDEA&s", // ML
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ28e3mGOO58W9ZYK77RnRWft95Bwr4lg5RQ&s", // PSQL
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuiNAv3RuXflh4VDsij9Onm3Ii7CuQbFJsTQ&s" // Cybersec
 ];
 
 export default function CourseDetail() {
     const params = useParams();
-    const courseId = Number(params.id); // Převádíme ID kurzu na číslo
+    const courseId = Number(params.id);
     const [course, setCourse] = useState<Course | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
@@ -25,8 +25,7 @@ export default function CourseDetail() {
     const { data: session } = useSession();
     const userRole = session?.user?.role;
 
-    // Vybrání obrázku pomocí courseId
-    const courseImage = course ? courseImageArray[courseId - 1] : null; // Používá courseId jako index pro pole obrázků
+    const courseImage = course ? courseImageArray[courseId - 1] : null;
 
     useEffect(() => {
         async function fetchCourseDetail() {

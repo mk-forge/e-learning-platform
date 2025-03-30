@@ -35,14 +35,12 @@ const UserProfile = () => {
                     setUserRole(userData.role);
 
                     if (userData.role === "student") {
-                        // Pro studenty načítáme `enrollments`
                         if (!userData.enrollments || !Array.isArray(userData.enrollments)) {
                             setError("Žádné přihlášené kurzy nenalezeny.");
                             return;
                         }
                         setUserCourses(userData.enrollments.map((enrollment: { course: Course }) => enrollment.course));
                     } else if (userData.role === "teacher") {
-                        // Pro učitele načítáme data z `/api/courses`
                         const coursesResponse = await fetch(`/api/courses`);
 
                         if (!coursesResponse.ok) {
@@ -51,7 +49,6 @@ const UserProfile = () => {
 
                         const coursesData: Course[] = await coursesResponse.json();
 
-                        // Filtrujeme kurzy podle `teacherId`
                         const teacherCourses = coursesData.filter(
                             (course) => course.teacherId === userData.id
                         );

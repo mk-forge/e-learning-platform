@@ -17,7 +17,7 @@ model User {
   createdAt    DateTime      @default(now()) @map("created_at")
   chatMessages ChatMessage[]
   courses      Course[]      @relation("TeacherOnCourse")
-  enrollments  Enrollment[]
+  enrollments  Enrollment[]  @relation("UserEnrollments")
   submissions  Submission[]
   testResults  TestResult[]
 
@@ -51,8 +51,9 @@ model Enrollment {
   courseId   Int      @map("course_id")
   enrolledAt DateTime @default(now()) @map("enrolled_at")
   course     Course   @relation(fields: [courseId], references: [id])
-  user       User     @relation(fields: [userId], references: [id])
+  user       User     @relation("UserEnrollments", fields: [userId], references: [id])
 
+  @@unique([userId, courseId])
   @@map("enrollments")
 }
 

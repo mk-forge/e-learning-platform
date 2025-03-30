@@ -95,7 +95,7 @@ export const CourseManagement = () => {
         />
         <textarea
           placeholder="Popis kurzu"
-          value={form.description}
+          value={form.description ?? ''}
           onChange={(e) => setForm({ ...form, description: e.target.value })}
           className="border p-2 mb-2 w-full"
         />

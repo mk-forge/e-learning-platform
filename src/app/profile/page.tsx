@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useSession } from "next-auth/react";
+import UserProfile from "@/components/UserProfile";
 
 const ProfilePage = () => {
   const { data: session, status } = useSession();
@@ -32,6 +33,7 @@ const ProfilePage = () => {
           <h2 className="text-xl font-semibold text-gray-700">Role:</h2>
           <p className="text-gray-600 capitalize">{user?.role}</p>
         </div>
+        <UserProfile/>
       </div>
     </div>
   );

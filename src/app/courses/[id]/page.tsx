@@ -5,6 +5,7 @@ import { useParams } from 'next/navigation';
 import { Course } from '@/types/course';
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useSession } from "next-auth/react";
+import { toast } from "react-hot-toast";
 
 const courseImageArray: string[] = [
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTU1QcWyLr7f0bHiBv4ZKw74dpj5sfS98yJPA&s", // C++
@@ -61,7 +62,7 @@ export default function CourseDetail() {
 
     async function enrollInCourse(courseId: number) {
         if (!session || !session.user?.email) {
-            alert("Musíte být přihlášeni, abyste se mohli zapsat do kurzu.");
+            toast.error("Musíte být přihlášeni, abyste se mohli zapsat do kurzu.");
             return;
         }
 
@@ -87,10 +88,12 @@ export default function CourseDetail() {
                 throw new Error("Chyba při zápisu do kurzu");
             }
 
-            const responseBody = await updateResponse.json();
+            await updateResponse.json();
             setIsEnrolled(true);
+            toast.success("Byli jste úspěšně zapsáni do kurzu!");
         } catch (error) {
             console.error('Chyba při zápisu do kurzu:', error);
+            toast.error("Nepodařilo se zapsat do kurzu. Zkuste to prosím znovu.");
         } finally {
             setLoading(false);
         }
@@ -98,16 +101,16 @@ export default function CourseDetail() {
 
     async function unenrollFromCourse(courseId: number) {
         if (!session || !session.user?.email) {
-            alert("Musíte být přihlášeni, abyste se mohli odhlásit z kurzu.");
+            toast.error("Musíte být přihlášeni, abyste se mohli odhlásit z kurzu.");
             return;
         }
-    
+
         if (loading) return;
-    
+
         try {
             setLoading(true);
             const userEmail = session.user.email;
-    
+
             const response = await fetch(`/api/users/${userEmail}`, {
                 method: 'DELETE',
                 headers: {
@@ -115,17 +118,19 @@ export default function CourseDetail() {
                 },
                 body: JSON.stringify({ courseId }),
             });
-    
+
             if (!response.ok) {
                 const errorBody = await response.text();
                 console.error('Chyba při odhlášení z kurzu:', errorBody);
                 throw new Error("Chyba při odhlášení z kurzu");
             }
-    
-            const responseBody = await response.json();    
+
+            await response.json();
             setIsEnrolled(false);
+            toast.success("Byli jste úspěšně odhlášeni z kurzu.");
         } catch (error) {
             console.error('Chyba při odhlášení z kurzu:', error);
+            toast.error("Nepodařilo se odhlásit z kurzu. Zkuste to prosím znovu.");
         } finally {
             setLoading(false);
         }

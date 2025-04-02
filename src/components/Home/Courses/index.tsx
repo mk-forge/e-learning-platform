@@ -7,16 +7,6 @@ import Link from "next/link";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Course } from "@/types/course";
 
-// Array of course images for random selection
-const courseImages = [
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyIxiE33bx2t0rTEUln1KrEc7e4TejvtOZPg&s",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPHX0QdVpZVWsnXCaEF3Lp7bSmZ7MIkjL33A&s",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOAnih04WNhAAe_aolZqky1alLD72EIoEDEA&s",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ28e3mGOO58W9ZYK77RnRWft95Bwr4lg5RQ&s",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTU1QcWyLr7f0bHiBv4ZKw74dpj5sfS98yJPA&s",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuiNAv3RuXflh4VDsij9Onm3Ii7CuQbFJsTQ&s"
-];
-
 const Courses = () => {
     const [courses, setCourses] = useState<Course[]>([]);
     const [loading, setLoading] = useState(true);
@@ -144,17 +134,16 @@ const Courses = () => {
                     </div>
                 ) : (
                     <Slider {...settings}>
-                        {courses.map((course, index) => {
+                        {courses.map((course) => {
                             const rating = generateRating();
                             const price = generatePrice();
-                            const imgSrc = courseImages[index % courseImages.length];
 
                             return (
                                 <div key={course.id}>
                                     <div className="bg-white m-3 mb-12 px-3 pt-3 pb-12 shadow-course-shadow rounded-2xl h-full">
                                         <div className="relative rounded-3xl overflow-hidden h-[200px]">
                                             <img
-                                                src={imgSrc}
+                                                src={course.imageUrl || "/images/courses/courseone.png"}
                                                 alt={course.title}
                                                 className="w-full h-full object-cover"
                                             />

@@ -1,10 +1,10 @@
-import { PrismaClient} from '@prisma/client';
-import { hash } from 'bcrypt';
+import {PrismaClient} from '@prisma/client';
+import {hash} from 'bcrypt';
 
 const prisma = new PrismaClient();
 
 async function main() {
-    // Create teachers
+    // Create teachers with photos
     const teachers = await Promise.all([
         prisma.user.create({
             data: {
@@ -12,7 +12,8 @@ async function main() {
                 lastName: 'Smith',
                 email: 'johnSmith@example.com',
                 passwordHash: await hash('password123', 10),
-                role: 'teacher'
+                role: 'teacher',
+                photoUrl: '/images/mentor/user1.png'
             },
         }),
         prisma.user.create({
@@ -21,7 +22,8 @@ async function main() {
                 lastName: 'Garcia',
                 email: 'maria.garcia@example.com',
                 passwordHash: await hash('password123', 10),
-                role: 'teacher'
+                role: 'teacher',
+                photoUrl: '/images/mentor/user2.png'
             },
         }),
         prisma.user.create({
@@ -30,23 +32,25 @@ async function main() {
                 lastName: 'Wong',
                 email: 'david.wong@example.com',
                 passwordHash: await hash('password123', 10),
-                role: 'teacher'
+                role: 'teacher',
+                photoUrl: '/images/mentor/user3.png'
             },
         })
     ]);
 
-    // Create student
+    // Create student with photo
     const student = await prisma.user.create({
         data: {
             firstName: 'Alex',
             lastName: 'Johnson',
             email: 'alex@example.com',
             passwordHash: await hash('password123', 10),
-            role: 'student'
+            role: 'student',
+            photoUrl: '/images/testimonial/user.svg'
         },
     });
 
-    // Create courses linked to teachers
+    // Create courses with images
     const courses = await Promise.all([
         prisma.course.create({
             data: {
@@ -55,7 +59,8 @@ async function main() {
                 capacity: 30,
                 isPremium: false,
                 hasAds: true,
-                teacherId: teachers[0].id
+                teacherId: teachers[0].id,
+                imageUrl: '/images/courses/courseone.png'
             },
         }),
         prisma.course.create({
@@ -65,7 +70,8 @@ async function main() {
                 capacity: 25,
                 isPremium: true,
                 hasAds: false,
-                teacherId: teachers[0].id
+                teacherId: teachers[0].id,
+                imageUrl: '/images/courses/coursetwo.png'
             },
         }),
         prisma.course.create({
@@ -75,7 +81,8 @@ async function main() {
                 capacity: 20,
                 isPremium: true,
                 hasAds: false,
-                teacherId: teachers[1].id
+                teacherId: teachers[1].id,
+                imageUrl: '/images/courses/coursethree.png'
             },
         }),
         prisma.course.create({
@@ -85,7 +92,8 @@ async function main() {
                 capacity: 25,
                 isPremium: false,
                 hasAds: true,
-                teacherId: teachers[2].id
+                teacherId: teachers[2].id,
+                imageUrl: '/images/courses/courseone.png'
             },
         }),
         prisma.course.create({
@@ -95,7 +103,8 @@ async function main() {
                 capacity: 30,
                 isPremium: false,
                 hasAds: true,
-                teacherId: teachers[1].id
+                teacherId: teachers[1].id,
+                imageUrl: '/images/courses/coursetwo.png'
             },
         }),
     ]);

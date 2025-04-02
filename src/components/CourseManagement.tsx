@@ -13,7 +13,8 @@ import {
     FaInfoCircle,
     FaUsers,
     FaStar,
-    FaAd
+    FaAd,
+    FaImage
 } from "react-icons/fa";
 import toast from "react-hot-toast";
 
@@ -22,13 +23,14 @@ export const CourseManagement = () => {
     const [courses, setCourses] = useState<Course[]>([]);
     const [filteredCourses, setFilteredCourses] = useState<Course[]>([]);
     const [showAllCourses, setShowAllCourses] = useState(false);
-    const [form, setForm] = useState<Pick<Course, "title" | "description" | "teacherId" | "capacity" | "isPremium" | "hasAds">>({
+    const [form, setForm] = useState<Pick<Course, "title" | "description" | "teacherId" | "capacity" | "isPremium" | "hasAds" | "imageUrl">>({
         title: "",
         description: "",
         teacherId: 0,
         capacity: null,
         isPremium: false,
-        hasAds: true
+        hasAds: true,
+        imageUrl: "" // Added imageUrl field
     });
     const [editForm, setEditForm] = useState<Partial<Course>>({
         id: undefined,
@@ -37,7 +39,8 @@ export const CourseManagement = () => {
         teacherId: 0,
         capacity: null,
         isPremium: false,
-        hasAds: true
+        hasAds: true,
+        imageUrl: "" // Added imageUrl field
     });
     const [error, setError] = useState("");
     const [isAddingCourse, setIsAddingCourse] = useState(false);
@@ -46,17 +49,19 @@ export const CourseManagement = () => {
 
     useEffect(() => {
         if (session?.user) {
-            // Convert session.user.id to number to avoid type errors
-            const teacherId = session.user.id ? Number(session.user.id) : 0;
+            // Access user.id safely through type assertion
+            const user = session.user as { id?: string };
+            const teacherId = user.id ? Number(user.id) : 0;
             setForm(prev => ({...prev, teacherId}));
         }
         fetchCourses();
     }, [session]);
 
     useEffect(() => {
-        if (courses.length > 0 && session?.user?.id) {
-            // Convert session.user.id to number for comparison
-            const userId = Number(session.user.id);
+        if (courses.length > 0 && session?.user) {
+            // Access user.id safely through type assertion
+            const user = session.user as { id?: string };
+            const userId = user.id ? Number(user.id) : 0;
             // Filter courses where teacherId matches the user's ID
             const teacherCourses = courses.filter(course => course.teacherId === userId);
             setFilteredCourses(showAllCourses ? courses : teacherCourses);
@@ -90,8 +95,9 @@ export const CourseManagement = () => {
         }
 
         try {
-            // Convert to number to ensure correct type
-            const teacherId = session?.user?.id ? Number(session.user.id) : 0;
+            // Access user.id safely through type assertion
+            const user = session?.user as { id?: string };
+            const teacherId = user?.id ? Number(user.id) : 0;
             // Convert capacity to number or null
             const capacity = form.capacity ? Number(form.capacity) : null;
 
@@ -104,7 +110,8 @@ export const CourseManagement = () => {
                     teacherId: teacherId,
                     capacity: capacity,
                     isPremium: form.isPremium,
-                    hasAds: form.hasAds
+                    hasAds: form.hasAds,
+                    imageUrl: form.imageUrl || null // Added imageUrl field
                 }),
             });
 
@@ -119,7 +126,8 @@ export const CourseManagement = () => {
                 teacherId,
                 capacity: null,
                 isPremium: false,
-                hasAds: true
+                hasAds: true,
+                imageUrl: "" // Reset imageUrl field
             });
             setIsAddingCourse(false);
             await fetchCourses();
@@ -142,11 +150,12 @@ export const CourseManagement = () => {
 
             // Use the course ID in the URL to update a specific course
             const response = await fetch(`/api/courses/${editForm.id}`, {
-                method: "PUT",  // This stays the same
+                method: "PUT",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({
                     ...editForm,
-                    capacity
+                    capacity,
+                    imageUrl: editForm.imageUrl || null // Include imageUrl in the update
                 }),
             });
 
@@ -162,7 +171,8 @@ export const CourseManagement = () => {
                 teacherId: 0,
                 capacity: null,
                 isPremium: false,
-                hasAds: true
+                hasAds: true,
+                imageUrl: "" // Reset imageUrl field
             });
             await fetchCourses();
         } catch (err) {
@@ -189,8 +199,9 @@ export const CourseManagement = () => {
     }
 
     const canEdit = (teacherId: number) => {
-        // Convert session.user.id to number for comparison
-        return session?.user?.id ? Number(session.user.id) === teacherId : false;
+        // Access user.id safely through type assertion
+        const user = session?.user as { id?: string };
+        return user?.id ? Number(user.id) === teacherId : false;
     };
 
     if (loading) {
@@ -204,7 +215,7 @@ export const CourseManagement = () => {
     }
 
     return (
-        <div className="container mx-auto px-4 py-8 mt-20"> {/* Changed pt-25 to mt-20 */}
+        <div className="container mx-auto px-4 py-8 mt-20">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
                 <h1 className="text-2xl md:text-3xl font-bold text-gray-800 flex items-center mb-6">
                     <FaBook className="mr-3 text-blue-500"/>
@@ -272,6 +283,23 @@ export const CourseManagement = () => {
                                 onChange={(e) => setForm({...form, description: e.target.value})}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[100px]"
                             />
+                        </div>
+
+                        {/* Add image URL field */}
+                        <div className="mb-4">
+                            <label htmlFor="imageUrl"
+                                   className="block text-gray-700 text-sm font-medium mb-2 flex items-center">
+                                <FaImage className="mr-2 text-blue-500"/> URL obrázku kurzu
+                            </label>
+                            <input
+                                id="imageUrl"
+                                type="text"
+                                placeholder="https://example.com/image.jpg"
+                                value={form.imageUrl || ""}
+                                onChange={(e) => setForm({...form, imageUrl: e.target.value})}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                            <p className="text-xs text-gray-500 mt-1">Ponechte prázdné pro výchozí obrázek</p>
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
@@ -401,6 +429,23 @@ export const CourseManagement = () => {
                             />
                         </div>
 
+                        {/* Add image URL field to edit form */}
+                        <div className="mb-4">
+                            <label htmlFor="edit-imageUrl"
+                                   className="block text-gray-700 text-sm font-medium mb-2 flex items-center">
+                                <FaImage className="mr-2 text-green-500"/> URL obrázku kurzu
+                            </label>
+                            <input
+                                id="edit-imageUrl"
+                                type="text"
+                                placeholder="https://example.com/image.jpg"
+                                value={editForm.imageUrl || ""}
+                                onChange={(e) => setEditForm({...editForm, imageUrl: e.target.value})}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                            />
+                            <p className="text-xs text-gray-500 mt-1">Ponechte prázdné pro výchozí obrázek</p>
+                        </div>
+
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                             <div>
                                 <label htmlFor="edit-capacity" className="block text-gray-700 text-sm font-medium mb-2">
@@ -487,7 +532,8 @@ export const CourseManagement = () => {
                                     teacherId: 0,
                                     capacity: null,
                                     isPremium: false,
-                                    hasAds: true
+                                    hasAds: true,
+                                    imageUrl: ""
                                 })}
                                 className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors order-2 sm:order-1"
                             >
@@ -509,6 +555,14 @@ export const CourseManagement = () => {
                     {filteredCourses.map((course) => (
                         <div key={course.id}
                              className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100">
+                            {/* Course image display */}
+                            <div className="h-40 overflow-hidden">
+                                <img
+                                    src={course.imageUrl || "/images/courses/courseone.png"}
+                                    alt={course.title}
+                                    className="w-full h-full object-cover"
+                                />
+                            </div>
                             <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 border-b">
                                 <div className="flex justify-between items-start">
                                     <h2 className="font-bold text-xl text-gray-800">{course.title}</h2>
@@ -559,7 +613,8 @@ export const CourseManagement = () => {
                                                     teacherId: course.teacherId,
                                                     capacity: course.capacity,
                                                     isPremium: course.isPremium,
-                                                    hasAds: course.hasAds
+                                                    hasAds: course.hasAds,
+                                                    imageUrl: course.imageUrl
                                                 })}
                                                 className="text-blue-500 hover:text-blue-700 flex items-center transition-colors"
                                             >

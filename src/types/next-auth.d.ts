@@ -1,34 +1,23 @@
+import 'next-auth';
 
-
-declare module "next-auth" {
-    interface User {
-        id: string;
-        firstName: string;
-        lastName: string;
-        email: string;
-        role: string;
-        photoUrl?: string;  // Add photoUrl field here
-    }
-
+declare module 'next-auth' {
     interface Session {
         user: {
-            id: string;
-            firstName: string;
-            lastName: string;
-            email: string;
-            name: string;
-            role: string;
-            photoUrl?: string;  // Add photoUrl field here
-        };
+            id?: string;
+            email?: string | null;
+            photoUrl?: string | null;
+            firstName?: string;
+            lastName?: string;
+            role?: string;
+        }
     }
 }
 
-declare module "next-auth/jwt" {
+declare module 'next-auth/jwt' {
     interface JWT {
-        id: string;
-        firstName: string;
-        lastName: string;
-        role: string;
-        photoUrl?: string;  // Add photoUrl field here
+        id?: string;
+        firstName?: string;
+        lastName?: string;
+        role?: string;
     }
 }

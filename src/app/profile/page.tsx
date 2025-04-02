@@ -19,23 +19,11 @@ const ProfilePage = () => {
     }
 
     if (status === "unauthenticated") {
-        return (
-            <div className="container mx-auto px-4 py-10 text-center">
-                <div className="bg-red-50 text-red-600 p-4 rounded-lg">
-                    <p className="font-medium">Přístup odepřen. Nejste přihlášeni.</p>
-                </div>
-            </div>
-        );
+        router.push("/");
     }
 
     const user = session?.user;
     const isStudent = user?.role === "student";
-
-    // Redirect teachers to their dedicated page
-    if (user?.role === "teacher") {
-        router.push("/teacher");
-        return null;
-    }
 
     return (
         <div className="container mx-auto px-4 py-10">

@@ -105,7 +105,7 @@ const Header: React.FC = () => {
                                     <span>
                                         {session.user.firstName
                                             ? `${session.user.firstName} ${session.user.lastName}`
-                                            : session.user.name}
+                                            : session.user.firstName}
                                     </span>
                                     <Icon icon="tabler:chevron-down" className="text-primary" />
                                 </button>
@@ -126,9 +126,9 @@ const Header: React.FC = () => {
                                         >
                                             Profil
                                         </Link>
-                                        <Link href="/dashboard" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                            Dashboard
-                                        </Link>
+                                        {/*<Link href="/dashboard" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">*/}
+                                        {/*    Dashboard*/}
+                                        {/*</Link>*/}
                                         <button
                                             onClick={handleLogout}
                                             className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100"

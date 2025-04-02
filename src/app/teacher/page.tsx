@@ -120,15 +120,7 @@ const TeacherProfilePage = () => {
                         </div>
                     </div>
 
-                    <div className="mt-4">
-                        <button
-                            onClick={() => router.push("/courseManagement")}
-                            className="inline-flex items-center bg-indigo-500 hover:bg-indigo-600 text-white font-medium py-2 px-4 rounded-lg transition-colors"
-                        >
-                            <FaPlus className="mr-2"/>
-                            Vytvořit nový kurz
-                        </button>
-                    </div>
+
                 </div>
             </div>
 
@@ -141,13 +133,23 @@ const TeacherProfilePage = () => {
                             Moje kurzy
                         </h2>
 
+                        <div className="mt-4">
+                            <button
+                                onClick={() => router.push("/courseManagement")}
+                                className="inline-flex items-center bg-indigo-500 hover:bg-indigo-600 text-white font-medium py-2 px-4 rounded-lg transition-colors"
+                            >
+                                <FaPlus className="mr-2"/>
+                                Vytvořit nový kurz
+                            </button>
+                        </div>
+
                         {loading ? (
                             <div className="flex justify-center items-center h-40">
                                 <div
                                     className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
                             </div>
                         ) : teacherCourses.length > 0 ? (
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
                                 {teacherCourses.map((course) => (
                                     <div key={course.id}
                                          className="border rounded-lg overflow-hidden hover:shadow-md transition-shadow">

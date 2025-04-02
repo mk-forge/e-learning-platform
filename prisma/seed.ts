@@ -60,7 +60,7 @@ async function main() {
                 isPremium: false,
                 hasAds: true,
                 teacherId: teachers[0].id,
-                imageUrl: '/images/courses/courseone.png'
+                photoUrl: '/images/courses/courseone.png'
             },
         }),
         prisma.course.create({
@@ -71,7 +71,7 @@ async function main() {
                 isPremium: true,
                 hasAds: false,
                 teacherId: teachers[0].id,
-                imageUrl: '/images/courses/coursetwo.png'
+                photoUrl: '/images/courses/coursetwo.png'
             },
         }),
         prisma.course.create({
@@ -82,7 +82,7 @@ async function main() {
                 isPremium: true,
                 hasAds: false,
                 teacherId: teachers[1].id,
-                imageUrl: '/images/courses/coursethree.png'
+                photoUrl: '/images/courses/coursethree.png'
             },
         }),
         prisma.course.create({
@@ -93,7 +93,7 @@ async function main() {
                 isPremium: false,
                 hasAds: true,
                 teacherId: teachers[2].id,
-                imageUrl: '/images/courses/courseone.png'
+                photoUrl: '/images/courses/courseone.png'
             },
         }),
         prisma.course.create({
@@ -104,7 +104,7 @@ async function main() {
                 isPremium: false,
                 hasAds: true,
                 teacherId: teachers[1].id,
-                imageUrl: '/images/courses/coursetwo.png'
+                photoUrl: '/images/courses/coursetwo.png'
             },
         }),
     ]);

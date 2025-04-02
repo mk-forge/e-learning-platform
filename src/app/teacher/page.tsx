@@ -153,7 +153,7 @@ const TeacherProfilePage = () => {
                                          className="border rounded-lg overflow-hidden hover:shadow-md transition-shadow">
                                         <div className="h-40 overflow-hidden">
                                             <img
-                                                src={course.imageUrl || "/images/courses/courseone.png"}
+                                                src={course.photoUrl || "/images/courses/courseone.png"}
                                                 alt={course.title}
                                                 className="w-full h-full object-cover"
                                             />

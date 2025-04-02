@@ -14,6 +14,7 @@ model User {
   email        String        @unique @map("email")
   passwordHash String        @map("password_hash")
   role         Role          @default(student)
+  photoUrl     String?       @map("photo_url")
   createdAt    DateTime      @default(now()) @map("created_at")
   chatMessages ChatMessage[]
   courses      Course[]      @relation("TeacherOnCourse")
@@ -32,6 +33,7 @@ model Course {
   isPremium     Boolean        @default(false) @map("is_premium")
   hasAds        Boolean        @default(true) @map("has_ads")
   teacherId     Int            @map("teacher_id")
+  photoUrl      String?        @map("photo_url")
   createdAt     DateTime       @default(now()) @map("created_at")
   assignments   Assignment[]
   chatMessages  ChatMessage[]

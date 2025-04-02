@@ -23,14 +23,14 @@ export const CourseManagement = () => {
     const [courses, setCourses] = useState<Course[]>([]);
     const [filteredCourses, setFilteredCourses] = useState<Course[]>([]);
     const [showAllCourses, setShowAllCourses] = useState(false);
-    const [form, setForm] = useState<Pick<Course, "title" | "description" | "teacherId" | "capacity" | "isPremium" | "hasAds" | "imageUrl">>({
+    const [form, setForm] = useState<Pick<Course, "title" | "description" | "teacherId" | "capacity" | "isPremium" | "hasAds" | "photoUrl">>({
         title: "",
         description: "",
         teacherId: 0,
         capacity: null,
         isPremium: false,
         hasAds: true,
-        imageUrl: "" // Added imageUrl field
+        photoUrl: "" // Added imageUrl field
     });
     const [editForm, setEditForm] = useState<Partial<Course>>({
         id: undefined,
@@ -40,7 +40,7 @@ export const CourseManagement = () => {
         capacity: null,
         isPremium: false,
         hasAds: true,
-        imageUrl: "" // Added imageUrl field
+        photoUrl: "" // Added imageUrl field
     });
     const [error, setError] = useState("");
     const [isAddingCourse, setIsAddingCourse] = useState(false);
@@ -111,7 +111,7 @@ export const CourseManagement = () => {
                     capacity: capacity,
                     isPremium: form.isPremium,
                     hasAds: form.hasAds,
-                    imageUrl: form.imageUrl || null // Added imageUrl field
+                    imageUrl: form.photoUrl || null // Added imageUrl field
                 }),
             });
 
@@ -127,7 +127,7 @@ export const CourseManagement = () => {
                 capacity: null,
                 isPremium: false,
                 hasAds: true,
-                imageUrl: "" // Reset imageUrl field
+                photoUrl: "" // Reset imageUrl field
             });
             setIsAddingCourse(false);
             await fetchCourses();
@@ -155,7 +155,7 @@ export const CourseManagement = () => {
                 body: JSON.stringify({
                     ...editForm,
                     capacity,
-                    imageUrl: editForm.imageUrl || null // Include imageUrl in the update
+                    imageUrl: editForm.photoUrl || null // Include imageUrl in the update
                 }),
             });
 
@@ -172,7 +172,7 @@ export const CourseManagement = () => {
                 capacity: null,
                 isPremium: false,
                 hasAds: true,
-                imageUrl: "" // Reset imageUrl field
+                photoUrl: "" // Reset imageUrl field
             });
             await fetchCourses();
         } catch (err) {
@@ -295,8 +295,8 @@ export const CourseManagement = () => {
                                 id="imageUrl"
                                 type="text"
                                 placeholder="https://example.com/image.jpg"
-                                value={form.imageUrl || ""}
-                                onChange={(e) => setForm({...form, imageUrl: e.target.value})}
+                                value={form.photoUrl || ""}
+                                onChange={(e) => setForm({...form, photoUrl: e.target.value})}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
                             <p className="text-xs text-gray-500 mt-1">Ponechte prázdné pro výchozí obrázek</p>
@@ -439,8 +439,8 @@ export const CourseManagement = () => {
                                 id="edit-imageUrl"
                                 type="text"
                                 placeholder="https://example.com/image.jpg"
-                                value={editForm.imageUrl || ""}
-                                onChange={(e) => setEditForm({...editForm, imageUrl: e.target.value})}
+                                value={editForm.photoUrl || ""}
+                                onChange={(e) => setEditForm({...editForm, photoUrl: e.target.value})}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                             />
                             <p className="text-xs text-gray-500 mt-1">Ponechte prázdné pro výchozí obrázek</p>
@@ -533,7 +533,7 @@ export const CourseManagement = () => {
                                     capacity: null,
                                     isPremium: false,
                                     hasAds: true,
-                                    imageUrl: ""
+                                    photoUrl: ""
                                 })}
                                 className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors order-2 sm:order-1"
                             >
@@ -558,7 +558,7 @@ export const CourseManagement = () => {
                             {/* Course image display */}
                             <div className="h-40 overflow-hidden">
                                 <img
-                                    src={course.imageUrl || "/images/courses/courseone.png"}
+                                    src={course.photoUrl || "/images/courses/courseone.png"}
                                     alt={course.title}
                                     className="w-full h-full object-cover"
                                 />
@@ -614,7 +614,7 @@ export const CourseManagement = () => {
                                                     capacity: course.capacity,
                                                     isPremium: course.isPremium,
                                                     hasAds: course.hasAds,
-                                                    imageUrl: course.imageUrl
+                                                    photoUrl: course.photoUrl
                                                 })}
                                                 className="text-blue-500 hover:text-blue-700 flex items-center transition-colors"
                                             >

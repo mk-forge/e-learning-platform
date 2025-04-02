@@ -143,7 +143,7 @@ const Courses = () => {
                                     <div className="bg-white m-3 mb-12 px-3 pt-3 pb-12 shadow-course-shadow rounded-2xl h-full">
                                         <div className="relative rounded-3xl overflow-hidden h-[200px]">
                                             <img
-                                                src={course.imageUrl || "/images/courses/courseone.png"}
+                                                src={course.photoUrl || "/images/courses/courseone.png"}
                                                 alt={course.title}
                                                 className="w-full h-full object-cover"
                                             />

@@ -4,6 +4,7 @@ export interface Course {
     description?: string | null;
     capacity?: number | null;
     isPremium: boolean;
+    photoUrl?: string | null;
     hasAds: boolean;
     teacherId: number;
     createdAt: Date | string;

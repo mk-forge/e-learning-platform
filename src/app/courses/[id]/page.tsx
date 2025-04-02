@@ -17,8 +17,6 @@ export default function CourseDetail() {
     const {data: session} = useSession();
     const userRole = session?.user?.role;
 
-    const courseImage = course?.imageUrl || null;
-
     useEffect(() => {
         async function fetchCourseDetail() {
             try {
@@ -159,7 +157,7 @@ export default function CourseDetail() {
                 {/* Hero section with image and overlay */}
                 <div className="relative h-64 md:h-96">
                     <img
-                        src={course.imageUrl || "/images/courses/courseone.png"}
+                        src={course.photoUrl || "/images/courses/courseone.png"}
                         alt={course.title}
                         className="w-full h-full object-cover"
                     />

@@ -47,7 +47,7 @@ export const CourseList = () => {
                 {courses.map((course) => (
                     <div key={course.id} className="border p-4 bg-white rounded-lg shadow-md flex flex-col h-full">
                         <img
-                            src={course.imageUrl || "/images/courses/courseone.png"}
+                            src={course.photoUrl || "/images/courses/courseone.png"}
                             alt={course.title}
                             className="w-full h-48 object-cover rounded-lg mb-4"
                         />

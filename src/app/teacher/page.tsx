@@ -6,6 +6,7 @@ import {useRouter} from "next/navigation";
 import {FaUser, FaEnvelope, FaUserTag, FaChalkboardTeacher, FaPlus, FaBook} from "react-icons/fa";
 import {useEffect, useState} from "react";
 import {Course} from "@/types/course";
+import toast from "react-hot-toast";
 
 
 const TeacherProfilePage = () => {
@@ -19,7 +20,11 @@ const TeacherProfilePage = () => {
             if (session?.user?.id) {
                 try {
                     const res = await fetch("/api/courses");
-                    if (!res.ok) throw new Error("Failed to fetch courses");
+                    if (!res.ok) {
+                        console.log("Error fetching courses:", res.statusText);
+                        toast.error(res.statusText);
+                    }
+
                     const allCourses: Course[] = await res.json();
                     // Filter courses for the current teacher
                     const teacherId = Number(session.user.id);

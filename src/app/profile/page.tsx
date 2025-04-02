@@ -5,6 +5,7 @@ import {useSession} from "next-auth/react";
 import {useRouter} from "next/navigation";
 import {FaUser, FaEnvelope, FaUserTag, FaGraduationCap, FaBook} from "react-icons/fa";
 import {useEffect, useState} from "react";
+import toast from "react-hot-toast";
 
 const ProfilePage = () => {
     const {data: session, status} = useSession();
@@ -110,7 +111,10 @@ const UserProfileComponent = () => {
 
             try {
                 const res = await fetch(`/api/users/${session.user.email}`);
-                if (!res.ok) throw new Error("Nepodařilo se načíst data uživatele");
+                if (!res.ok) {
+                    console.log(res.status);
+                    toast.error("Nepodařilo se načíst data uživatele");
+                }
                 const data = await res.json();
                 setUserData(data);
             } catch (err) {
@@ -152,20 +156,34 @@ const UserProfileComponent = () => {
                         Zapsané kurzy
                     </h2>
                     {userData.enrollments.length > 0 ? (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
                             {userData.enrollments.map((enrollment: any) => (
                                 <div key={enrollment.id}
-                                     className="border rounded-lg p-4 hover:shadow-md transition-shadow">
-                                    <h3 className="font-medium">{enrollment.course.title}</h3>
-                                    <p className="text-sm text-gray-500 mt-1">
-                                        Zapsáno: {new Date(enrollment.enrolledAt).toLocaleDateString()}
-                                    </p>
-                                    <a
-                                        href={`/courses/${enrollment.course.id}`}
-                                        className="text-blue-500 hover:text-blue-700 text-sm flex items-center mt-2"
-                                    >
-                                        Přejít na kurz →
-                                    </a>
+                                     className="border rounded-lg overflow-hidden hover:shadow-md transition-shadow">
+                                    <div className="h-40 overflow-hidden">
+                                        <img
+                                            src={enrollment.course.photoUrl || "/images/courses/courseone.png"}
+                                            alt={enrollment.course.title}
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </div>
+                                    <div className="p-4">
+                                        <h3 className="font-medium">{enrollment.course.title}</h3>
+                                        <p className="text-sm text-gray-500 mt-1 line-clamp-2">
+                                            {enrollment.course.description || "Bez popisu"}
+                                        </p>
+                                        <div className="flex justify-between items-center mt-3">
+                                            <span className="text-xs bg-gray-100 px-2 py-1 rounded-full">
+                                                {enrollment.course.isPremium ? "Premium" : "Free"}
+                                            </span>
+                                            <a
+                                                href={`/courses/${enrollment.course.id}`}
+                                                className="text-blue-500 hover:text-blue-700 text-sm flex items-center"
+                                            >
+                                                Přejít na kurz →
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             ))}
                         </div>

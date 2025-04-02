@@ -67,14 +67,13 @@ const handler = NextAuth({
                 session.user.firstName = token.firstName as string;
                 session.user.lastName = token.lastName as string;
                 session.user.role = token.role as string;
-                // Ensure name is available for components that use it
                 session.user.name = `${token.firstName} ${token.lastName}`;
             }
             return session;
         },
     },
     pages: {
-        signIn: '/', // Use your custom signin modal
+        signIn: '/',
     }
 });
 

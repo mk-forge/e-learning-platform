@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Course } from "@/types/course";
 import { CourseCard } from "@/components/Course/CourseCard";
 import { FaBook } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 export const CourseList = () => {
     const [courses, setCourses] = useState<Course[]>([]);
@@ -18,7 +19,10 @@ export const CourseList = () => {
         try {
             setLoading(true);
             const res = await fetch("/api/courses");
-            if (!res.ok) throw new Error("Chyba při načítání kurzů");
+            if (!res.ok) {
+                console.log("Error fetching courses: ", res.statusText);
+                toast.error("Chyba při načítání kurzů")
+            }
             const data: Course[] = await res.json();
             setCourses(data);
         } catch (err) {

@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import toast from "react-hot-toast";
 
 interface Teacher {
     id: number;
@@ -22,7 +23,11 @@ const Mentor = () => {
         async function fetchTeachers() {
             try {
                 const res = await fetch("/api/teachers");
-                if (!res.ok) throw new Error("Failed to fetch teachers");
+                if (!res.ok) {
+                    console.log("Response not ok:", res.status, res.statusText);
+                    toast.error("Failed to fetch teachers");
+                }
+
                 const data = await res.json();
                 setTeachers(data);
             } catch (error) {

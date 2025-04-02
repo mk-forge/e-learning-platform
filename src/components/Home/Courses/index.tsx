@@ -4,8 +4,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { Icon } from "@iconify/react/dist/iconify.js";
 import { Course } from "@/types/course";
+import { FaUserTie, FaCalendarAlt, FaInfoCircle } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 const Courses = () => {
     const [courses, setCourses] = useState<Course[]>([]);
@@ -17,7 +18,11 @@ const Courses = () => {
             try {
                 setLoading(true);
                 const res = await fetch("/api/courses");
-                if (!res.ok) throw new Error("Chyba při načítání kurzů");
+                if (!res.ok) {
+                    console.log(res.status);
+                    toast.error("Chyba při načítání kurzů");
+                }
+
                 const data = await res.json();
                 setCourses(data);
             } catch (err) {
@@ -37,7 +42,7 @@ const Courses = () => {
         slidesToScroll: 1,
         arrows: false,
         autoplay: true,
-        speed: 500,
+        speed: 200,
         cssEase: "linear",
         responsive: [
             {
@@ -45,8 +50,6 @@ const Courses = () => {
                 settings: {
                     slidesToShow: Math.min(2, courses.length),
                     slidesToScroll: 1,
-                    infinite: true,
-                    dots: false
                 }
             },
             {
@@ -54,39 +57,9 @@ const Courses = () => {
                 settings: {
                     slidesToShow: 1,
                     slidesToScroll: 1,
-                    infinite: true,
-                    dots: false
                 }
             }
         ]
-    };
-
-    // Random rating for demo purposes
-    const generateRating = () => {
-        return (Math.floor(Math.random() * 10) + 35) / 10; // Rating between 3.5 and 5.0
-    };
-
-    // Random price for demo purposes
-    const generatePrice = () => {
-        return Math.floor(Math.random() * 50) + 30; // Price between $30 and $80
-    };
-
-    const renderStars = (rating: number) => {
-        const fullStars = Math.floor(rating);
-        const halfStars = rating % 1 >= 0.5 ? 1 : 0;
-        const emptyStars = 5 - fullStars - halfStars;
-
-        return (
-            <>
-                {[...Array(fullStars)].map((_, i) => (
-                    <Icon key={`full-${i}`} icon="tabler:star-filled" className="text-yellow-500 text-xl inline-block" />
-                ))}
-                {halfStars > 0 && <Icon key="half" icon="tabler:star-half-filled" className="text-yellow-500 text-xl inline-block" />}
-                {[...Array(emptyStars)].map((_, i) => (
-                    <Icon key={`empty-${i}`} icon="tabler:star-filled" className="text-gray-400 text-xl inline-block" />
-                ))}
-            </>
-        );
     };
 
     if (loading) {
@@ -134,67 +107,62 @@ const Courses = () => {
                     </div>
                 ) : (
                     <Slider {...settings}>
-                        {courses.map((course) => {
-                            const rating = generateRating();
-                            const price = generatePrice();
+                        {courses.map((course) => (
+                            <div key={course.id} className="px-2">
+                                <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100">
+                                    <div className="h-40 overflow-hidden">
+                                        <img
+                                            src={course.photoUrl || "/images/courses/courseone.png"}
+                                            alt={course.title}
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </div>
 
-                            return (
-                                <div key={course.id}>
-                                    <div className="bg-white m-3 mb-12 px-3 pt-3 pb-12 shadow-course-shadow rounded-2xl h-full">
-                                        <div className="relative rounded-3xl overflow-hidden h-[200px]">
-                                            <img
-                                                src={course.photoUrl || "/images/courses/courseone.png"}
-                                                alt={course.title}
-                                                className="w-full h-full object-cover"
-                                            />
+                                    <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 border-b">
+                                        <div className="flex justify-between items-start">
+                                            <h2 className="font-bold text-lg text-gray-800 line-clamp-1">{course.title}</h2>
                                             {course.isPremium && (
-                                                <div className="absolute right-5 -bottom-2 bg-secondary rounded-full p-4">
-                                                    <h3 className="text-white uppercase text-center text-xs font-medium">premium</h3>
-                                                </div>
+                                                <span className="bg-yellow-400 text-xs font-semibold px-2 py-1 rounded-full text-gray-900">
+                                                    Premium
+                                                </span>
                                             )}
                                         </div>
+                                    </div>
 
-                                        <div className="px-3 pt-6">
-                                            <Link href={`/courses/${course.id}`} className="text-2xl font-bold text-black max-w-75% inline-block">{course.title}</Link>
-                                            <h3 className="text-base font-normal pt-6 text-black/75">{course.teacher.firstName} {course.teacher.lastName}</h3>
-                                            <div className="flex justify-between items-center py-6 border-b">
-                                                <div className="flex items-center gap-4">
-                                                    <h3 className="text-red-700 text-2xl font-medium">{rating.toFixed(1)}</h3>
-                                                    <div className="flex">
-                                                        {renderStars(rating)}
-                                                    </div>
-                                                </div>
-                                                {course.isPremium ? (
-                                                    <h3 className="text-3xl font-medium">${price}</h3>
-                                                ) : (
-                                                    <h3 className="text-2xl font-medium text-green-600">Zdarma</h3>
-                                                )}
+                                    <div className="p-4">
+                                        <p className="text-gray-600 mb-4 text-sm line-clamp-2">
+                                            {course.description || "Bez popisu"}
+                                        </p>
+
+                                        <div className="grid grid-cols-2 gap-2 mb-4">
+                                            <div className="flex items-center text-gray-500 text-xs">
+                                                <FaUserTie className="mr-2 text-blue-500"/>
+                                                <span className="truncate">{course.teacher?.firstName} {course.teacher?.lastName}</span>
                                             </div>
-                                            <div className="flex justify-between pt-6">
-                                                <div className="flex gap-4">
-                                                    <Icon
-                                                        icon="solar:notebook-minimalistic-outline"
-                                                        className="text-primary text-xl inline-block me-2"
-                                                    />
-                                                    <h3 className="text-base font-medium text-black opacity-75">
-                                                        {course.materials?.length || 0} materiálů
-                                                    </h3>
-                                                </div>
-                                                <div className="flex gap-4">
-                                                    <Icon
-                                                        icon="solar:users-group-rounded-linear"
-                                                        className="text-primary text-xl inline-block me-2"
-                                                    />
-                                                    <h3 className="text-base font-medium text-black opacity-75">
-                                                        {course.capacity || "∞"} studentů
-                                                    </h3>
-                                                </div>
+
+                                            <div className="flex items-center text-gray-500 text-xs">
+                                                <FaCalendarAlt className="mr-2 text-blue-500"/>
+                                                <span>{new Date(course.createdAt).toLocaleDateString()}</span>
                                             </div>
+                                        </div>
+
+                                        <div className="pt-3 border-t flex justify-between items-center">
+                                            <div className="bg-gray-100 px-3 py-1 rounded-full text-gray-600 text-xs flex items-center">
+                                                <FaInfoCircle className="mr-1"/>
+                                                {course.isPremium ? "Premium kurz" : "Základní kurz"}
+                                            </div>
+
+                                            <Link
+                                                href={`/courses/${course.id}`}
+                                                className="text-indigo-500 hover:text-indigo-700 text-sm font-medium"
+                                            >
+                                                Detail →
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>
-                            );
-                        })}
+                            </div>
+                        ))}
                     </Slider>
                 )}
             </div>

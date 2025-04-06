@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { BreadcrumbProps } from "../../types/breadcrumb"; // Adjust the import path based on your project structure
+import React from "react";
+import { BreadcrumbProps } from "@/types/breadcrumb"; // Adjust the import path based on your project structure
 
 const Breadcrumb: React.FC<BreadcrumbProps> = ({
   pageName,

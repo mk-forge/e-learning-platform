@@ -21,6 +21,7 @@ model User {
   enrollments  Enrollment[]  @relation("UserEnrollments")
   submissions  Submission[]
   testResults  TestResult[]
+  quizResults  QuizResult[]  @relation("UserQuizResults")
 
   @@map("users")
 }
@@ -43,8 +44,40 @@ model Course {
   materials     Material[]
   testResults   TestResult[]
   voiceChannels VoiceChannel[]
+  lectures      Lecture[]
 
   @@map("courses")
+}
+
+model Lecture {
+  id          Int          @id @default(autoincrement()) @map("id_lecture")
+  title       String
+  type        LectureType  @default(text)
+  content     String?
+  videoUrl    String?      @map("video_url")
+  questions   Json?
+  order       Int          @default(1)
+  courseId    Int          @map("course_id")
+  createdAt   DateTime     @default(now()) @map("created_at")
+  updatedAt   DateTime     @updatedAt @map("updated_at")
+  course      Course       @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  quizResults QuizResult[]
+
+  @@map("lectures")
+}
+
+model QuizResult {
+  id        Int      @id @default(autoincrement()) @map("id_quiz_result")
+  studentId Int      @map("student_id")
+  lectureId Int      @map("lecture_id")
+  score     Int
+  maxScore  Int      @map("max_score")
+  answers   Json? // Store the student's answers
+  dateTaken DateTime @default(now()) @map("date_taken")
+  student   User     @relation("UserQuizResults", fields: [studentId], references: [id])
+  lecture   Lecture  @relation(fields: [lectureId], references: [id], onDelete: Cascade)
+
+  @@map("quiz_results")
 }
 
 model Enrollment {
@@ -116,6 +149,7 @@ model TestResult {
   studentId Int      @map("student_id")
   courseId  Int      @map("course_id")
   score     Int?
+  answers   Json?
   dateTaken DateTime @default(now()) @map("date_taken")
   course    Course   @relation(fields: [courseId], references: [id])
   student   User     @relation(fields: [studentId], references: [id])
@@ -133,33 +167,34 @@ model ContactForm {
   @@map("contact_forms")
 }
 
-model VoiceChannel {
-  id        Int      @id @default(autoincrement()) @map("id_voice_channel")
-  courseId  Int      @map("course_id")
-  name      String
-  createdAt DateTime @default(now()) @map("created_at")
-  course    Course   @relation(fields: [courseId], references: [id])
-
-  @@map("voice_channels")
-}
-
 model FinalTest {
-  id          Int       @id @default(autoincrement()) @map("id_final_test")
-  courseId    Int       @map("course_id")
-  title       String
-  description String?
-  deadline    DateTime?
-  minScore    Int?      @map("min_score")
-  maxAttempts Int       @default(1) @map("max_attempts")
-  isUnlocked  Boolean   @default(false) @map("is_unlocked")
-  createdAt   DateTime  @default(now()) @map("created_at")
-  course      Course    @relation(fields: [courseId], references: [id])
+  id       Int     @id @default(autoincrement()) @map("id_final_test")
+  courseId Int     @map("course_id")
+  title    String
+  content  String?
+  course   Course  @relation(fields: [courseId], references: [id])
 
   @@map("final_tests")
 }
 
+model VoiceChannel {
+  id       Int    @id @default(autoincrement()) @map("id_voice_channel")
+  courseId Int    @map("course_id")
+  name     String
+  url      String
+  course   Course @relation(fields: [courseId], references: [id])
+
+  @@map("voice_channels")
+}
+
 enum Role {
-  student
-  teacher
   admin
+  teacher
+  student
+}
+
+enum LectureType {
+  text
+  video
+  quiz
 }

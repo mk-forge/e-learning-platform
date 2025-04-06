@@ -1,10 +1,9 @@
 "use client";
-import { signIn } from "next-auth/react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+
+import {signIn} from "next-auth/react";
+import {useRouter} from "next/navigation";
+import React, {useState} from "react";
 import toast from "react-hot-toast";
-import SocialSignIn from "../SocialSignIn";
 import Logo from "@/components/Layout/Header/Logo"
 import Loader from "@/components/Common/Loader";
 
@@ -38,7 +37,7 @@ const Signin = ({
             } else if (result?.ok) {
                 toast.success("Login successful");
                 setIsSignInOpen(false);
-                router.refresh(); // This refreshes the page to update authentication state
+                router.refresh();
             }
         } catch (error) {
             toast.error("An error occurred during login");
@@ -55,17 +54,17 @@ const Signin = ({
 
     return (
         <>
-            <div className="mb-10 text-center mx-auto inline-block max-w-[160px]">
-                <Logo />
+            <div className="mb-5 text-center mx-auto inline-block max-w-[160px]">
+                <Logo/>
             </div>
 
-            <SocialSignIn />
-
-            <span className="z-1 relative my-8 block text-center before:content-[''] before:absolute before:h-px before:w-40% before:bg-black/15 before:left-0 before:top-3 after:content-[''] after:absolute after:h-px after:w-40% after:bg-black/15 after:top-3 after:right-0">
-        <span className="text-body-secondary relative z-10 inline-block px-3 text-base text-black">
-          NEBO
-        </span>
-      </span>
+            <div className="relative my-8 flex items-center justify-center">
+                <div className="absolute left-0 top-1/2 h-px w-[40%] bg-black/15"></div>
+                <span className="relative z-10 inline-block px-4 text-base font-medium text-black/70">
+                    Sign In
+                </span>
+                <div className="absolute right-0 top-1/2 h-px w-[40%] bg-black/15"></div>
+            </div>
 
             <form onSubmit={loginUser}>
                 <div className="mb-[22px]">
@@ -88,27 +87,15 @@ const Signin = ({
                     />
                 </div>
 
-                <div className="mb-9">
+                <div className="mb-5">
                     <button
                         type="submit"
                         className="bg-primary w-full py-3 rounded-lg text-white text-18 font-medium border border-primary hover:text-primary hover:bg-transparent"
                     >
-                        Přihlásit se {loading && <Loader />}
+                        Přihlásit se {loading && <Loader/>}
                     </button>
                 </div>
             </form>
-
-            <Link
-                href="#"
-                className="mb-2 inline-block text-base text-dark hover:underline text-primary dark:hover:text-primary"
-                onClick={(e) => {
-                    e.preventDefault();
-                    setIsSignInOpen(false);
-                    router.push("/forgot-password");
-                }}
-            >
-                Zapomněli jste heslo?
-            </Link>
             <p className="text-body-secondary text-black text-base">
                 Ještě nejste členem?{" "}
                 <a

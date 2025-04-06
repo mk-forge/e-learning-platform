@@ -13,7 +13,7 @@ export async function GET() {
                 lastName: true,
                 email: true,
                 role: true,
-                photoUrl: true // Directly include photoUrl since it exists in schema
+                photoUrl: true
             }
         });
 

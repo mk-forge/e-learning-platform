@@ -52,6 +52,7 @@ export async function POST(req: NextRequest) {
                 isPremium: body.isPremium ?? false,
                 hasAds: body.hasAds ?? true,
                 teacherId: body.teacherId,
+                photoUrl: body.photoUrl,
             },
         });
 

@@ -7,6 +7,8 @@ import {Icon} from "@iconify/react/dist/iconify.js";
 import {useSession} from "next-auth/react";
 import {toast} from "react-hot-toast";
 import {FaEdit, FaTrash} from "react-icons/fa";
+import TeacherStatistics from "@/components/Statistics/TeacherStatistics";
+import StudentStatistics from "@/components/Statistics/StudentStatistics";
 
 export default function CourseDetail() {
     const params = useParams();
@@ -260,7 +262,7 @@ export default function CourseDetail() {
 
                             {/* Course Actions */}
                             <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
-                                {userRole === "teacher" ? (
+                                {userRole === "teacher" && Number(session?.user?.id) === course.teacherId ? (
                                     <div className="flex flex-col sm:flex-row gap-3">
                                         <button
                                             onClick={handleEditCourse}
@@ -356,6 +358,27 @@ export default function CourseDetail() {
                     </div>
                 </div>
             </div>
+
+            {/* Statistics Section */}
+            {((userRole === 'teacher' || userRole === 'admin') && course.teacherId === Number(session?.user?.id)) ||
+            (userRole === 'student' && isEnrolled && session?.user?.id) ? (
+                <div className="mt-8 bg-white shadow-xl rounded-xl overflow-hidden p-6 md:p-8">
+                    <h2 className="text-xl font-bold mb-6 pb-2 border-b border-gray-200">Statistiky kurzu</h2>
+
+                    {/* TeacherStatistics */}
+                    {(userRole === 'teacher' || userRole === 'admin') && course.teacherId === Number(session?.user?.id) && (
+                        <TeacherStatistics courseId={courseId} />
+                    )}
+
+                    {/* StudentStatistics */}
+                    {userRole === 'student' && isEnrolled && session?.user?.id && (
+                        <StudentStatistics
+                            courseId={courseId}
+                            studentId={Number(session.user.id)}
+                        />
+                    )}
+                </div>
+            ) : null}
 
             {/* Delete Confirmation Modal */}
             {confirmDelete && (

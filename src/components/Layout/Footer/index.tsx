@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import Logo from "../Header/Logo";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { headerData } from "../Header/Navigation/menuData";

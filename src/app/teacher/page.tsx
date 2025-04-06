@@ -78,15 +78,15 @@ const TeacherProfilePage = () => {
             <div className="bg-white shadow-lg rounded-xl overflow-hidden">
                 <div className="bg-gradient-to-r from-indigo-500 to-indigo-600 p-6 text-white">
                     <div className="flex flex-col sm:flex-row items-center gap-6">
-                        {user?.photoUrl ? (
+                        {session?.user && "photoUrl" in session.user && session.user.photoUrl ? (
                             <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-md">
                                 <img
-                                    src={user.photoUrl}
-                                    alt={`${user.firstName} ${user.lastName}`}
+                                    src={session.user.photoUrl as string}
+                                    alt={`${user?.firstName} ${user?.lastName}`}
                                     className="w-full h-full object-cover"
                                 />
                             </div>
-                        ) : (
+                        ): (
                             <div className="bg-white rounded-full p-4 shadow-md">
                                 <FaChalkboardTeacher className="text-5xl text-indigo-500"/>
                             </div>

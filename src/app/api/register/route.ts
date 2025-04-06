@@ -9,7 +9,6 @@ export async function POST(req: Request) {
         const body = await req.json();
         const { firstName, lastName, email, password } = body;
 
-        // Check if user already exists
         const existingUser = await prisma.user.findUnique({
             where: {
                 email: email,
@@ -23,18 +22,16 @@ export async function POST(req: Request) {
             );
         }
 
-        // Hash password
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        // Create user in the database
         const user = await prisma.user.create({
             data: {
                 firstName,
                 lastName,
                 email,
                 passwordHash: hashedPassword,
-                // role defaults to 'student' as set in schema
+                role: "student",
             },
         });
 

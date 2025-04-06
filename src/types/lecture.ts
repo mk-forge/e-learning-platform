@@ -6,17 +6,22 @@ export interface BaseLecture {
     title: string;
     type: LectureType;
     order: number;
+    createdAt?: Date;
+    updatedAt?: Date;
 }
 
 export interface TextLecture extends BaseLecture {
     type: 'text';
     content: string;
+    videoUrl?: null;
+    questions?: null;
 }
 
 export interface VideoLecture extends BaseLecture {
     type: 'video';
     videoUrl: string;
-    description?: string;
+    content?: null;
+    questions?: null;
 }
 
 export interface QuizQuestion {
@@ -27,9 +32,12 @@ export interface QuizQuestion {
     correctText?: string;
 }
 
+
 export interface QuizLecture extends BaseLecture {
     type: 'quiz';
     questions: QuizQuestion[];
+    content?: null;
+    videoUrl?: null;
 }
 
 export type Lecture = TextLecture | VideoLecture | QuizLecture;

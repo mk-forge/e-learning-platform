@@ -45,38 +45,3 @@ export async function registerUser(formData: FormData) {
         return { success: false, message: "Error creating user" };
     }
 }
-
-export async function loginUser(formData: FormData) {
-    const email = formData.get("email") as string;
-    const password = formData.get("password") as string;
-
-    if (!email || !password) {
-        return { success: false, message: "All fields are required" };
-    }
-
-    try {
-        // Find user by email
-        const user = await prisma.user.findUnique({
-            where: { email },
-        });
-
-        if (!user) {
-            return { success: false, message: "Invalid email or password" };
-        }
-
-        // Compare passwords
-        const passwordMatch = await bcrypt.compare(password, user.passwordHash);
-
-        if (!passwordMatch) {
-            return { success: false, message: "Invalid email or password" };
-        }
-
-        // Don't include password in the response
-        const { passwordHash, ...userWithoutPassword } = user;
-
-        return { success: true, message: "Login successful", user: userWithoutPassword };
-    } catch (error) {
-        console.error("Login error:", error);
-        return { success: false, message: "An error occurred during login" };
-    }
-}

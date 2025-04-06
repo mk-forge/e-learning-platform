@@ -3,7 +3,6 @@
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import toast from "react-hot-toast";
-import SocialSignUp from "../SocialSignUp";
 import Logo from "@/components/Layout/Header/Logo";
 import React, { useState } from "react";
 import Loader from "@/components/Common/Loader";
@@ -30,7 +29,6 @@ const SignUp = ({
             if (result.success) {
                 toast.success("Successfully registered");
 
-                // Auto-login after registration
                 const email = formData.get("email") as string;
                 const password = formData.get("password") as string;
 
@@ -42,7 +40,7 @@ const SignUp = ({
 
                 if (loginResult?.ok) {
                     setIsSignUpOpen(false);
-                    router.refresh(); // Refresh to update authentication state
+                    router.refresh();
                 } else if (loginResult?.error) {
                     toast.error("Registration successful but couldn't log in automatically");
                 }
@@ -64,18 +62,17 @@ const SignUp = ({
 
     return (
         <>
-            <div className="mb-10 text-center mx-auto inline-block max-w-[160px]">
+            <div className="mb-5 text-center mx-auto inline-block max-w-[160px]">
                 <Logo/>
             </div>
 
-            <SocialSignUp/>
-
-            <span
-                className="z-1 relative my-8 block text-center before:content-[''] before:absolute before:h-px before:w-40% before:bg-black/60 before:left-0 before:top-3 after:content-[''] after:absolute after:h-px after:w-40% after:bg-black/60 after:top-3 after:right-0">
-        <span className="relative z-10 inline-block px-3 text-base text-black">
-          OR
-        </span>
-      </span>
+            <div className="relative my-8 flex items-center justify-center">
+                <div className="absolute left-0 top-1/2 h-px w-[40%] bg-black/15"></div>
+                <span className="relative z-10 inline-block px-4 text-base font-medium text-black/70">
+                    Sign Up
+                </span>
+                <div className="absolute right-0 top-1/2 h-px w-[40%] bg-black/15"></div>
+            </div>
 
             <form onSubmit={handleSubmit}>
                 <div className="mb-[22px] flex gap-2">
@@ -112,7 +109,7 @@ const SignUp = ({
                         className="w-full rounded-md border border-black/20 border-solid bg-transparent px-5 py-3 text-base text-dark outline-none transition placeholder:text-grey focus:border-primary focus-visible:shadow-none text-black dark:focus:border-primary"
                     />
                 </div>
-                <div className="mb-9">
+                <div className="mb-5">
                     <button
                         type="submit"
                         className="flex w-full items-center text-18 font-medium justify-center rounded-md text-white bg-primary px-5 py-3 text-darkmode transition duration-300 ease-in-out hover:bg-transparent hover:text-primary border-primary border "

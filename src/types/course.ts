@@ -13,6 +13,7 @@ export interface Course {
     };
     materials?: any[];
     assignments?: any[];
+    stripeId?: string | null;
 }
 
 export type User = {

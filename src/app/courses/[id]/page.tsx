@@ -1,12 +1,12 @@
 "use client";
 
-import {useState, useEffect} from 'react';
-import {useParams, useRouter} from 'next/navigation';
-import {Course} from '@/types/course';
-import {Icon} from "@iconify/react/dist/iconify.js";
-import {useSession} from "next-auth/react";
-import {toast} from "react-hot-toast";
-import {FaEdit, FaTrash} from "react-icons/fa";
+import { useState, useEffect } from 'react';
+import { useParams, useRouter } from 'next/navigation';
+import { Course } from '@/types/course';
+import { Icon } from "@iconify/react/dist/iconify.js";
+import { useSession } from "next-auth/react";
+import { toast } from "react-hot-toast";
+import { FaEdit, FaTrash } from "react-icons/fa";
 import TeacherStatistics from "@/components/Statistics/TeacherStatistics";
 import StudentStatistics from "@/components/Statistics/StudentStatistics";
 
@@ -19,7 +19,7 @@ export default function CourseDetail() {
     const [confirmDelete, setConfirmDelete] = useState(false);
     const [error, setError] = useState("");
     const [isEnrolled, setIsEnrolled] = useState(false);
-    const {data: session} = useSession();
+    const { data: session } = useSession();
     const userRole = session?.user?.role;
 
     useEffect(() => {
@@ -98,8 +98,8 @@ export default function CourseDetail() {
             setLoading(true);
             const response = await fetch(`/api/users/${session.user.email}`, {
                 method: 'PUT',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({enrollments: [{courseId}]}),
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ enrollments: [{ courseId }] }),
             });
 
             if (!response.ok) {
@@ -131,8 +131,8 @@ export default function CourseDetail() {
             setLoading(true);
             const response = await fetch(`/api/users/${session.user.email}`, {
                 method: 'DELETE',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({courseId}),
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ courseId }),
             });
 
             if (!response.ok) {
@@ -207,10 +207,10 @@ export default function CourseDetail() {
                         </div>
                         <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">{course.title}</h1>
                         <div className="flex items-center text-white/90 text-sm">
-                            <Icon icon="ph:user-circle-fill" className="w-5 h-5 mr-2"/>
+                            <Icon icon="ph:user-circle-fill" className="w-5 h-5 mr-2" />
                             <span>{course.teacher.firstName} {course.teacher.lastName}</span>
                             <span className="mx-2">•</span>
-                            <Icon icon="ph:calendar" className="w-5 h-5 mr-2"/>
+                            <Icon icon="ph:calendar" className="w-5 h-5 mr-2" />
                             <span>{new Date(course.createdAt).toLocaleDateString()}</span>
                         </div>
                     </div>
@@ -223,7 +223,7 @@ export default function CourseDetail() {
                         <div className="lg:col-span-2">
                             <div className="mb-8">
                                 <h2 className="text-xl font-bold mb-4 text-gray-800 flex items-center">
-                                    <Icon icon="ph:info-fill" className="mr-2 text-blue-500"/>
+                                    <Icon icon="ph:info-fill" className="mr-2 text-blue-500" />
                                     O kurzu
                                 </h2>
                                 <p className="text-gray-700 leading-relaxed">
@@ -233,28 +233,28 @@ export default function CourseDetail() {
 
                             <div className="mb-8">
                                 <h2 className="text-xl font-bold mb-4 text-gray-800 flex items-center">
-                                    <Icon icon="ph:graduation-cap-fill" className="mr-2 text-blue-500"/>
+                                    <Icon icon="ph:graduation-cap-fill" className="mr-2 text-blue-500" />
                                     Co se naučíte
                                 </h2>
                                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <li className="flex items-start">
                                         <Icon icon="ph:check-circle-fill"
-                                              className="mt-1 mr-2 text-green-500 flex-shrink-0"/>
+                                            className="mt-1 mr-2 text-green-500 flex-shrink-0" />
                                         <span>Základní koncepty a principy</span>
                                     </li>
                                     <li className="flex items-start">
                                         <Icon icon="ph:check-circle-fill"
-                                              className="mt-1 mr-2 text-green-500 flex-shrink-0"/>
+                                            className="mt-1 mr-2 text-green-500 flex-shrink-0" />
                                         <span>Praktické dovednosti pro reálné využití</span>
                                     </li>
                                     <li className="flex items-start">
                                         <Icon icon="ph:check-circle-fill"
-                                              className="mt-1 mr-2 text-green-500 flex-shrink-0"/>
+                                            className="mt-1 mr-2 text-green-500 flex-shrink-0" />
                                         <span>Pokročilé techniky a metody</span>
                                     </li>
                                     <li className="flex items-start">
                                         <Icon icon="ph:check-circle-fill"
-                                              className="mt-1 mr-2 text-green-500 flex-shrink-0"/>
+                                            className="mt-1 mr-2 text-green-500 flex-shrink-0" />
                                         <span>Tipy pro pokročilé uživatele</span>
                                     </li>
                                 </ul>
@@ -268,20 +268,20 @@ export default function CourseDetail() {
                                             onClick={handleEditCourse}
                                             className="flex items-center justify-center px-6 py-2.5 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors"
                                         >
-                                            <FaEdit className="mr-2"/>
+                                            <FaEdit className="mr-2" />
                                             Upravit kurz
                                         </button>
                                         <button
                                             onClick={() => setConfirmDelete(true)}
                                             className="flex items-center justify-center px-6 py-2.5 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors"
                                         >
-                                            <FaTrash className="mr-2"/>
+                                            <FaTrash className="mr-2" />
                                             Smazat kurz
                                         </button>
                                         <button
                                             className="flex items-center justify-center px-6 py-2.5 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors flex-1 sm:flex-initial"
                                         >
-                                            <Icon icon="ph:book-open-fill" className="mr-2"/>
+                                            <Icon icon="ph:book-open-fill" className="mr-2" />
                                             Zobrazit kurz
                                         </button>
                                     </div>
@@ -293,22 +293,32 @@ export default function CourseDetail() {
                                                     onClick={() => unenrollFromCourse(courseId)}
                                                     className="flex items-center justify-center px-6 py-2.5 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors"
                                                 >
-                                                    <Icon icon="ph:user-minus-fill" className="mr-2"/>
+                                                    <Icon icon="ph:user-minus-fill" className="mr-2" />
                                                     Odhlásit se z kurzu
                                                 </button>
                                                 <button
                                                     className="flex items-center justify-center px-6 py-2.5 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors flex-1 sm:flex-initial"
                                                 >
-                                                    <Icon icon="ph:book-open-fill" className="mr-2"/>
+                                                    <Icon icon="ph:book-open-fill" className="mr-2" />
                                                     Zobrazit kurz
                                                 </button>
                                             </div>
+                                        ) : course.isPremium ? (
+                                            <a
+                                                href={course.stripeId || "#"}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center justify-center px-6 py-2.5 bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg transition-colors"
+                                            >
+                                                <Icon icon="ph:credit-card-fill" className="mr-2" />
+                                                Zaplatit a zapsat se
+                                            </a>
                                         ) : (
                                             <button
                                                 onClick={() => enrollInCourse(courseId)}
-                                                className="w-full sm:w-auto flex items-center justify-center px-8 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors text-lg"
+                                                className="flex items-center justify-center px-6 py-2.5 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors"
                                             >
-                                                <Icon icon="ph:user-plus-fill" className="mr-2"/>
+                                                <Icon icon="ph:user-plus-fill" className="mr-2" />
                                                 Zapsat se do kurzu
                                             </button>
                                         )}
@@ -325,28 +335,28 @@ export default function CourseDetail() {
                                 </h2>
                                 <ul className="space-y-4">
                                     <li className="flex items-center">
-                                        <Icon icon="ph:users-three-fill" className="text-gray-500 mr-3 w-5 h-5"/>
+                                        <Icon icon="ph:users-three-fill" className="text-gray-500 mr-3 w-5 h-5" />
                                         <div>
                                             <div className="text-sm text-gray-500">Kapacita</div>
                                             <div className="font-medium">{course.capacity || "Neomezená"}</div>
                                         </div>
                                     </li>
                                     <li className="flex items-center">
-                                        <Icon icon="ph:crown-fill" className="text-gray-500 mr-3 w-5 h-5"/>
+                                        <Icon icon="ph:crown-fill" className="text-gray-500 mr-3 w-5 h-5" />
                                         <div>
                                             <div className="text-sm text-gray-500">Premium kurz</div>
                                             <div className="font-medium">{course.isPremium ? "Ano" : "Ne"}</div>
                                         </div>
                                     </li>
                                     <li className="flex items-center">
-                                        <Icon icon="ph:book-open-fill" className="text-gray-500 mr-3 w-5 h-5"/>
+                                        <Icon icon="ph:book-open-fill" className="text-gray-500 mr-3 w-5 h-5" />
                                         <div>
                                             <div className="text-sm text-gray-500">Materiály</div>
                                             <div className="font-medium">{course.materials?.length || 0}</div>
                                         </div>
                                     </li>
                                     <li className="flex items-center">
-                                        <Icon icon="ph:clipboard-fill" className="text-gray-500 mr-3 w-5 h-5"/>
+                                        <Icon icon="ph:clipboard-fill" className="text-gray-500 mr-3 w-5 h-5" />
                                         <div>
                                             <div className="text-sm text-gray-500">Úkoly</div>
                                             <div className="font-medium">{course.assignments?.length || 0}</div>
@@ -361,7 +371,7 @@ export default function CourseDetail() {
 
             {/* Statistics Section */}
             {((userRole === 'teacher' || userRole === 'admin') && course.teacherId === Number(session?.user?.id)) ||
-            (userRole === 'student' && isEnrolled && session?.user?.id) ? (
+                (userRole === 'student' && isEnrolled && session?.user?.id) ? (
                 <div className="mt-8 bg-white shadow-xl rounded-xl overflow-hidden p-6 md:p-8">
                     <h2 className="text-xl font-bold mb-6 pb-2 border-b border-gray-200">Statistiky kurzu</h2>
 

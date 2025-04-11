@@ -92,7 +92,8 @@ async function main() {
                 isPremium: false,
                 hasAds: true,
                 teacherId: teachers[0].id,
-                photoUrl: '/images/courses/courseone.png'
+                photoUrl: '/images/courses/courseone.png',
+                stripeId: null
             },
         }),
         prisma.course.create({
@@ -103,7 +104,8 @@ async function main() {
                 isPremium: true,
                 hasAds: false,
                 teacherId: teachers[0].id,
-                photoUrl: '/images/courses/coursetwo.png'
+                photoUrl: '/images/courses/coursetwo.png',
+                stripeId: 'https://buy.stripe.com/test_bIYeXBd6scHjbN64gj'
             },
         }),
         prisma.course.create({
@@ -114,7 +116,8 @@ async function main() {
                 isPremium: true,
                 hasAds: false,
                 teacherId: teachers[1].id,
-                photoUrl: '/images/courses/coursethree.png'
+                photoUrl: '/images/courses/coursethree.png',
+                stripeId: 'https://buy.stripe.com/test_fZebLp4zWdLn7wQ9AC'
             },
         }),
         prisma.course.create({
@@ -125,7 +128,8 @@ async function main() {
                 isPremium: false,
                 hasAds: true,
                 teacherId: teachers[2].id,
-                photoUrl: '/images/courses/courseone.png'
+                photoUrl: '/images/courses/courseone.png',
+                stripeId: null
             },
         }),
         prisma.course.create({
@@ -136,7 +140,8 @@ async function main() {
                 isPremium: false,
                 hasAds: true,
                 teacherId: teachers[1].id,
-                photoUrl: '/images/courses/coursetwo.png'
+                photoUrl: '/images/courses/coursetwo.png',
+                stripeId: null
             },
         }),
     ]);

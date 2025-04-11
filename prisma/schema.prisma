@@ -45,7 +45,8 @@ model Course {
   testResults   TestResult[]
   voiceChannels VoiceChannel[]
   lectures      Lecture[]
-
+  stripeId      String?
+  
   @@map("courses")
 }
 

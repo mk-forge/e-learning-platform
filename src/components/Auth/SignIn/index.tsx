@@ -61,7 +61,7 @@ const Signin = ({
             <div className="relative my-8 flex items-center justify-center">
                 <div className="absolute left-0 top-1/2 h-px w-[40%] bg-black/15"></div>
                 <span className="relative z-10 inline-block px-4 text-base font-medium text-black/70">
-                    Sign In
+                    Přihlášení
                 </span>
                 <div className="absolute right-0 top-1/2 h-px w-[40%] bg-black/15"></div>
             </div>
@@ -103,7 +103,7 @@ const Signin = ({
                     className="text-primary hover:underline"
                     onClick={switchToSignUp}
                 >
-                    Registrovat se
+                    Zaregistrujte se!
                 </a>
             </p>
         </>

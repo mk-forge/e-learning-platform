@@ -148,7 +148,7 @@ const Header: React.FC = () => {
                                         setIsSignInOpen(true);
                                     }}
                                 >
-                                    Sign In
+                                    Přihlásit se
                                 </Link>
                                 <Link
                                     href="#"
@@ -158,7 +158,7 @@ const Header: React.FC = () => {
                                         setIsSignUpOpen(true);
                                     }}
                                 >
-                                    Sign Up
+                                    Registrovat se
                                 </Link>
                             </>
                         )}
@@ -261,7 +261,7 @@ const Header: React.FC = () => {
                                         setNavbarOpen(false);
                                     }}
                                 >
-                                    Sign In
+                                    Přihlásit se
                                 </Link>
                                 <Link
                                     href="#"
@@ -272,7 +272,7 @@ const Header: React.FC = () => {
                                         setNavbarOpen(false);
                                     }}
                                 >
-                                    Sign Up
+                                    Registrovat se
                                 </Link>
                             </div>
                         )}

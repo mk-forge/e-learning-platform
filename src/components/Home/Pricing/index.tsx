@@ -36,7 +36,11 @@ const Pricing = () => {
             toast.error("Pro pokračování se musíte přihlásit.");
             return;
         }
-        toast.success(`Vybrali jste plán: ${plan}`);
+        if (plan === "Měsíční plán") {
+            window.location.href = "https://buy.stripe.com/test_7sI8yrgZq6aW0JG4gg";
+        } else if (plan === "Roční plán") {
+            window.location.href = "https://buy.stripe.com/test_3cs7unfVm8j42RO9AB"
+        }
     };
 
     if (loading) {
@@ -97,7 +101,7 @@ const Pricing = () => {
                     {/* Monthly Plan */}
                     <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
                         <h3 className="text-xl font-bold text-gray-800 mb-4">Měsíční plán</h3>
-                        <p className="text-gray-600 mb-6">10 $ měsíčně</p>
+                        <p className="text-gray-600 mb-6">250 Kč měsíčně</p>
                         <button
                             onClick={() => handlePurchase("Měsíční plán")}
                             className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
@@ -108,7 +112,7 @@ const Pricing = () => {
                     {/* Annual Plan */}
                     <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
                         <h3 className="text-xl font-bold text-gray-800 mb-4">Roční plán</h3>
-                        <p className="text-gray-600 mb-6">100 $ ročně</p>
+                        <p className="text-gray-600 mb-6">2 500 Kč ročně</p>
                         <button
                             onClick={() => handlePurchase("Roční plán")}
                             className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"

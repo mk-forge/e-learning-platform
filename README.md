@@ -1,63 +1,67 @@
-# 📚 E-Learning Platform  
+# 📚 E-Learning Platform
 
-## 🎯 Project Overview  
-Vitajte v našej **E-Learning Platforme**, webovej aplikácii navrhnutej na podporu online vzdelávania a prepojenie **študentov, učiteľov a administrátorov**. Platforma ponúka interaktívne vzdelávacie skúsenosti s **kurzami, úlohami, testami a komunikáciou v reálnom čase**.  
+## 🎯 Project Overview
+Welcome to our **E-Learning Platform**, a web application designed to support online education and connect **students, teachers, and administrators**. The platform offers interactive learning experiences with **courses, assignments, tests, and real-time communication**.
 
-## 🚀 Features  
-### 👥 Užívateľské role  
-- **Študenti**: Prihlasovanie na kurzy, plnenie úloh, absolvovanie testov a sledovanie pokroku.  
-- **Učitelia**: Vytváranie kurzov, nahrávanie materiálov, zadávanie úloh/testov a hodnotenie študentov.  
-- **Administrátori**: Schvaľovanie učiteľov, správa kurzov a dohľad nad platformou.  
+## 🚀 Features
+### 👥 User Roles
+- **Students**: Enroll in courses, complete assignments, take tests, and track progress.
+- **Teachers**: Create courses, upload materials, assign tasks/tests, and grade students.
+- **Administrators**: Approve teachers, manage courses, and oversee the platform.
 
-### 📖 Vzdelávacie funkcie  
-- **Správa kurzov**: Učitelia môžu vytvárať a spravovať kurzy, študenti sa môžu zapisovať.  
-- **Úlohy a testy**: Študenti riešia zadania s termínmi odovzdania, učitelia ich hodnotia.  
-- **Certifikáty**: Po úspešnom absolvovaní kurzu študenti získajú certifikát.  
-- **Live chat a hlasová komunikácia**: Interaktívne diskusie pod jednotlivými kurzami.  
+### 📖 Educational Features
+- **Course Management**: Teachers can create and manage courses, students can enroll.
+- **Assignments and Tests**: Students solve tasks with deadlines, teachers grade them.
+- **Certificates**: Upon successful course completion, students receive a certificate.
+- **Live chat and voice communication**: Interactive discussions under individual courses.
 
-### 💰 Monetizácia a prístup  
-- **Bezplatné a prémiové kurzy**: Základné kurzy s reklamami, prémiové kurzy pre platiacich užívateľov.  
-- **Podpora viacerých jazykov**: **Čeština a angličtina**.  
+### 💰 Monetization and Access
+- **Free and premium courses**: Basic courses with ads, premium courses for paying users.
+- **Multi-language support**: **Czech and English**.
 
-## 🛠️ Tech Stack  
-- **Frontend**: React.js + Next.js  
-- **Backend**: Node.js (Express)  
-- **Databáza**: PostgreSQL / MongoDB  
-- **Autentifikácia**: Firebase / OAuth  
-- **Hosting**: Vercel / AWS / DigitalOcean  
+## 🛠️ Tech Stack
+- **Frontend**: React.js + Next.js
+- **Backend**: Node.js (Express)
+- **Database**: PostgreSQL / MongoDB
+- **Authentication**: Firebase / OAuth
+- **Hosting**: Vercel / AWS / DigitalOcean
 
-## 📌 Inštalácia a nastavenie  
-1. Klonovanie repozitára:  
+## 📌 Installation and Setup
+1. Clone the repository:
    ```sh
    git clone https://github.com/your-repo/e-learning-platform.git
-   ```  
-2. Prechod do adresára projektu:  
+   ```
+2. Navigate to the project directory:
    ```sh
    cd e-learning-platform
-   ```  
-3. Inštalácia závislostí:  
+   ```
+3. Install dependencies:
    ```sh
-   npm install  # pre frontend  
-   npm install  # pre backend  
-   ```  
-4. Spustenie projektu:  
+   npm install  # for frontend
+   npm install  # for backend
+4. Run the project:
    ```sh
-   npm run dev  # pre frontend s Next.js  
-   npm run start  # pre backend s Node.js  
-   ```  
+   npm run dev  # for frontend with Next.js
+   npm run start  # for backend with Node.js
+   ```
 
-## 🏗️ Vývojový workflow  
-- Používanie **Agile metodológie** s **dvojtýždňovými sprintmi**.  
-- Použitie **feature branches** a **pull requestov** na code review.  
-- Dokumentácia sa udržiava v **Git repozitári**.  
+## 🏗️ Development Workflow
+Using Agile methodology with two-week sprints.
 
-## 📝 Pravidlá pre prispievateľov  
-- Forknite repozitár.  
-- Vytvorte feature branch.  
-- Pošlite pull request.  
-- Dodržiavajte coding standards.  
+Using feature branches and pull requests for code review.
 
-## 📧 Kontakt  
-Pre akékoľvek otázky kontaktujte **administrátora** cez kontaktný formulár v rámci platformy.  
+Documentation is maintained in the Git repository.
 
-Happy Coding! 🎉🚀  
+## 📝 Contribution Guidelines
+Fork the repository.
+
+Create a feature branch.
+
+Submit a pull request.
+
+Follow coding standards.
+
+## 📧 Contact
+For any questions, contact the administrator via the contact form within the platform.
+
+Happy Coding! 🎉🚀

@@ -1,63 +1,42 @@
-# 📚 E-Learning Platform  
+# E-Learning Platform
 
-## 🎯 Project Overview  
-Vitajte v našej **E-Learning Platforme**, webovej aplikácii navrhnutej na podporu online vzdelávania a prepojenie **študentov, učiteľov a administrátorov**. Platforma ponúka interaktívne vzdelávacie skúsenosti s **kurzami, úlohami, testami a komunikáciou v reálnom čase**.  
+Web application for online education, built with five other students as a team project.
 
-## 🚀 Features  
-### 👥 Užívateľské role  
-- **Študenti**: Prihlasovanie na kurzy, plnenie úloh, absolvovanie testov a sledovanie pokroku.  
-- **Učitelia**: Vytváranie kurzov, nahrávanie materiálov, zadávanie úloh/testov a hodnotenie študentov.  
-- **Administrátori**: Schvaľovanie učiteľov, správa kurzov a dohľad nad platformou.  
+## My role
 
-### 📖 Vzdelávacie funkcie  
-- **Správa kurzov**: Učitelia môžu vytvárať a spravovať kurzy, študenti sa môžu zapisovať.  
-- **Úlohy a testy**: Študenti riešia zadania s termínmi odovzdania, učitelia ich hodnotia.  
-- **Certifikáty**: Po úspešnom absolvovaní kurzu študenti získajú certifikát.  
-- **Live chat a hlasová komunikácia**: Interaktívne diskusie pod jednotlivými kurzami.  
+I worked on the frontend part of the course management. Specifically, the Courses page, course enrollment and unenrollment, and adding images to courses. I also contributed to the profile page where enrolled courses are displayed.
 
-### 💰 Monetizácia a prístup  
-- **Bezplatné a prémiové kurzy**: Základné kurzy s reklamami, prémiové kurzy pre platiacich užívateľov.  
-- **Podpora viacerých jazykov**: **Čeština a angličtina**.  
+## User roles
 
-## 🛠️ Tech Stack  
-- **Frontend**: React.js + Next.js  
-- **Backend**: Node.js (Express)  
-- **Databáza**: PostgreSQL / MongoDB  
-- **Autentifikácia**: Firebase / OAuth  
-- **Hosting**: Vercel / AWS / DigitalOcean  
+Students enroll in courses, complete assignments, take tests, and track their progress. Teachers create courses, upload materials, and grade students. Administrators approve teachers and oversee the platform as a whole.
 
-## 📌 Inštalácia a nastavenie  
-1. Klonovanie repozitára:  
-   ```sh
-   git clone https://github.com/your-repo/e-learning-platform.git
-   ```  
-2. Prechod do adresára projektu:  
-   ```sh
-   cd e-learning-platform
-   ```  
-3. Inštalácia závislostí:  
-   ```sh
-   npm install  # pre frontend  
-   npm install  # pre backend  
-   ```  
-4. Spustenie projektu:  
-   ```sh
-   npm run dev  # pre frontend s Next.js  
-   npm run start  # pre backend s Node.js  
-   ```  
+## Features
 
-## 🏗️ Vývojový workflow  
-- Používanie **Agile metodológie** s **dvojtýždňovými sprintmi**.  
-- Použitie **feature branches** a **pull requestov** na code review.  
-- Dokumentácia sa udržiava v **Git repozitári**.  
+- Course management, with enrollment for students and content control for teachers
+- Assignments and tests with deadlines and grading
+- Certificates issued on successful course completion
+- Live chat and voice communication under individual courses
+- Free and premium courses, with ads on the free tier
+- Czech and English language support
 
-## 📝 Pravidlá pre prispievateľov  
-- Forknite repozitár.  
-- Vytvorte feature branch.  
-- Pošlite pull request.  
-- Dodržiavajte coding standards.  
+## Tech stack
 
-## 📧 Kontakt  
-Pre akékoľvek otázky kontaktujte **administrátora** cez kontaktný formulár v rámci platformy.  
+- Frontend: React, Next.js
+- Backend: Node.js, Express
+- Database: PostgreSQL, MongoDB
+- Auth: Firebase, OAuth
+- Hosting: Vercel, AWS, DigitalOcean
 
-Happy Coding! 🎉🚀  
+## Development process
+
+We used two-week sprints, feature branches with pull requests, and kept documentation in the repository.
+
+## Installation
+
+```sh
+git clone https://github.com/mk-forge/e-learning-platform.git
+cd e-learning-platform
+npm install
+npm run dev      # frontend
+npm run start    # backend
+```

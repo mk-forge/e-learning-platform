@@ -21,11 +21,11 @@ Students enroll in courses, complete assignments, take tests, and track their pr
 
 ## Tech stack
 
-- Frontend: React, Next.js
-- Backend: Node.js, Express
-- Database: PostgreSQL, MongoDB
-- Auth: Firebase, OAuth
-- Hosting: Vercel, AWS, DigitalOcean
+- **Frontend:** React, Next.js
+- **Backend:** Node.js, Express
+- **Database:** PostgreSQL, MongoDB
+- **Auth:** Firebase, OAuth
+- **Hosting:** Vercel, AWS, DigitalOcean
 
 ## Development process
 

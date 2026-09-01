@@ -40,3 +40,7 @@ npm install
 npm run dev      # frontend
 npm run start    # backend
 ```
+
+## Original team repository
+
+The original repository is available at: https://github.com/MiriamTom/E-Learning

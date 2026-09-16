@@ -4,11 +4,11 @@ Web application for online education, built with five other students as a team p
 
 ## My role
 
-I worked on the frontend part of the course management. Specifically, the Courses page, course enrollment and unenrollment, and adding images to courses. I also contributed to the profile page where enrolled courses are displayed.
+I worked on the frontend part of the course management. Specifically, the Courses page, course enrollment and unenrollment, along with adding images to courses. I also contributed to the profile page where enrolled courses are displayed.
 
 ## User roles
 
-Students enroll in courses, complete assignments, take tests, and track their progress. Teachers create courses, upload materials, and grade students. Administrators approve teachers and oversee the platform as a whole.
+Students enroll in courses, complete assignments, take tests and track their progress. Teachers create courses, upload materials and grade students. Administrators approve teachers and oversee the platform as a whole.
 
 ## Features
 
@@ -29,7 +29,7 @@ Students enroll in courses, complete assignments, take tests, and track their pr
 
 ## Development process
 
-We used two-week sprints, feature branches with pull requests, and kept documentation in the repository.
+We used two-week sprints, feature branches with pull requests and kept documentation in the repository.
 
 ## Installation
 

@@ -1,10 +1,10 @@
 # E-Learning Platform
 
-Web application for online education, built with five other students as a team project.
+Web application for online education built with five other students as a team project.
 
 ## My role
 
-I worked on the frontend part of the course management. Specifically, the Courses page, course enrollment and unenrollment, along with adding images to courses. I also contributed to the profile page where enrolled courses are displayed.
+I worked on the frontend part of the course management. Specifically, the courses page, course enrollment and unenrollment, along with adding images to courses. I also contributed to the profile page where enrolled courses are displayed.
 
 ## User roles
 
@@ -37,8 +37,8 @@ We used two-week sprints, feature branches with pull requests and kept documenta
 git clone https://github.com/mk-forge/e-learning-platform.git
 cd e-learning-platform
 npm install
-npm run dev      # frontend
-npm run start    # backend
+npm run dev
+npm run start
 ```
 
 ## Original team repository

@@ -43,4 +43,4 @@ npm run start
 
 ## Original team repository
 
-The original repository is available at: https://github.com/MiriamTom/E-Learning
+The original repository is available at: https://github.com/MiriamTom/E-Learning.

@@ -1,5 +1,12 @@
 # E-Learning Platform
 
+![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black)
+![Next.js](https://img.shields.io/badge/Next.js-000000?logo=nextdotjs&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-5FA04E?logo=nodedotjs&logoColor=white)
+![Express](https://img.shields.io/badge/Express-000000?logo=express&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?logo=mongodb&logoColor=white)
+
 Web application for online education built with five other students as a team project.
 
 ## My role
@@ -44,3 +51,7 @@ npm run start
 ## Original team repository
 
 The original repository is available at: https://github.com/MiriamTom/E-Learning.
+
+## License
+
+[MIT](LICENSE)
